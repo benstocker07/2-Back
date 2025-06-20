@@ -16,7 +16,7 @@ def calculate_d_prime_and_c(hits, false_alarms, go_trials, no_go_trials):
 
     return d_prime, c_prime
 
-# Example usage:
+#Add here the automation for calculation from the .db
 
 total = 150
 n_backs = 25

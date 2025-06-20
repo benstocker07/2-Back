@@ -94,7 +94,3 @@ def wrong():
 
 def close_connection():
     db_connection.close()
-
-while True:
-    trigger = int(input('Trigger: '))
-    dev.activate_line(bitmask=trigger)

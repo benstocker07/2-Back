@@ -1,5 +1,5 @@
 # 2-Back Task
-Welcome to the Task repository. This holds the Python code for the 2-Back iteration of the N-Back.
+Welcome to the Task repository. This holds the Python code for the 2-Back version of the N-Back.
 
 ### Tasks still to do in future updates (these will be updated as they are finalised):
 - [ ] The SDT calculations need to be automated from the .db

@@ -3,7 +3,7 @@ Welcome to the Task repository. This holds the Python code for the 2-Back iterat
 
 ### Tasks still to do in future updates (these will be updated as they are finalised):
 - [ ] The SDT calculations need to be automated from the .db
-- [x] Check integration with EEG (has previously worked cleanly)
+- [] Check integration with EEG (has previously worked cleanly)
 
 *Please refer to the License before considering sharing the contents of this repository. 
 

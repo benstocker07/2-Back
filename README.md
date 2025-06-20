@@ -9,4 +9,4 @@ Welcome to the Task repository. This holds the Python code for the 2-Back versio
 - [ ] Pilot test new integration with EEG (has previously worked cleanly)
 
 --------------------------------------------------------------------------------------
-*Please refer to the License before considering sharing the contents of this repository. 
+*Please refer to the License before considering sharing or editing the contents of this repository. 

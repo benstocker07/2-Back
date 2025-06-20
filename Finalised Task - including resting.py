@@ -434,7 +434,6 @@ def introduction():
 
                                 correct()
                                 score += 1
-
                 
             if currenttime - starting >= 2000:
                 if keyprocessed == False:
@@ -490,7 +489,6 @@ def introduction():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, reactiontime, name, key_name)
                             )
-
                 nb = None
                         
                 if keyprocessed == True:

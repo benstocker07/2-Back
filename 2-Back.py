@@ -1,5 +1,5 @@
 # Copyright Ben Stocker, 2025
-# See LICENSE.rtf for terms of use and restrictions.
+# See LICENSE.md for terms of use and restrictions.
 
 def display_license():
         with open("LICENSE.txt", "r", encoding="utf-8") as f:
@@ -84,8 +84,6 @@ def restingstate():
 
 #^^^^^^^^^^^^^^^^^^^^^ unhash to get resting state
 
-db_filename = "N-Back.db"
-
 db_connection = sqlite3.connect(db_filename)
 db_cursor = db_connection.cursor()
 
@@ -150,7 +148,6 @@ db_cursor.execute('''
         key TEXT
     )
 ''')
-
 
 count_file = 'N-Back count.txt'
 
@@ -240,7 +237,6 @@ def tester():
 
     pygame.time.wait(2000)
 
-
 def draw_text(text, position, color):
     """Draw text on the screen."""
     text_surface = font.render(text, True, color)
@@ -258,8 +254,6 @@ def introduction():
 
     os.environ["SDL_VIDEO_CENTERED"] = "1"
 
-
-    # font
     font = pygame.font.Font(None, 32)
 
     order = 1
@@ -282,14 +276,12 @@ def introduction():
         text_rect = text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
         screen.blit(text, text_rect)
 
-    
     correctinterval = pygame.image.load("greentick.png")
     correctintervaldimensions = correctinterval.get_rect(center=screen.get_rect().center) 
 
     incorrectinterval = pygame.image.load("redcross.png")
     incorrectintervaldimensions = incorrectinterval.get_rect(center=screen.get_rect().center)# Set up the game
     def generate_sequence(length):
-
         
         nbackno = math.ceil(sequence_length / 3)
 
@@ -324,7 +316,7 @@ def introduction():
     running = True
     if stimtracker_available:
         cdtest.start()
-
+        
     learningconv = learning-1
 
     def incorrect():
@@ -336,8 +328,7 @@ def introduction():
         pygame.time.wait(500)
         pygame.display.update()
         pygame.time.wait(500)
-
-
+        
     def correct():
 
         if stimtracker_available:
@@ -351,19 +342,15 @@ def introduction():
         pygame.display.update()
         pygame.time.wait(500)
         score =+ 1
-
             
     global timer2
     
     timer2 = time.time()
     hits = 0
     false_alarms = 0
-
-
     stim = True
 
     while running:        
-        
         starterRT = time.time()
 
         keypress = None  
@@ -375,15 +362,12 @@ def introduction():
         endRT = time.time()
         RT = (endRT - starterRT)
 
-        #pygame.time.wait(1000)
-
         screen.fill(WHITE)
         pygame.display.update()
         pygame.time.wait(500)
 
         delay = (random.randint(0,5)*100)+1000
-        pygame.time.wait(delay)
-        
+        pygame.time.wait(delay)        
                 
         if stimtracker_available:
             cdtest.test1()
@@ -391,7 +375,6 @@ def introduction():
         draw_text(str(sequence[current_index]), (WINDOW_SIZE[0] // 2, WINDOW_SIZE[1] // 2), BLACK)
 
         starting = pygame.time.get_ticks()
-
         
         pygame.display.update()
         
@@ -449,7 +432,6 @@ def introduction():
 
                                 correct()
                                 score += 1
-
                 
             if currenttime - starting >= 2000:
                 if keyprocessed == False:
@@ -505,7 +487,6 @@ def introduction():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, reactiontime, name, key_name)
                             )
-
                 nb = None
                         
                 if keyprocessed == True:

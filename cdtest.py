@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 
 def create_db_connection():
-    connection = sqlite3.connect('sst.db')
+    connection = sqlite3.connect('N-Back.db')
     create_table_if_not_exists(connection)
     return connection
 

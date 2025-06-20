@@ -1,5 +1,5 @@
 # Copyright Ben Stocker, 2025
-# See LICENSE.rtf for terms of use and restrictions.
+# See LICENSE.md for terms of use and restrictions.
 
 def display_license():
         with open("LICENSE.txt", "r", encoding="utf-8") as f:

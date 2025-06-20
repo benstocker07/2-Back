@@ -84,8 +84,6 @@ def restingstate():
 
 #^^^^^^^^^^^^^^^^^^^^^ unhash to get resting state
 
-db_filename = "N-Back.db"
-
 db_connection = sqlite3.connect(db_filename)
 db_cursor = db_connection.cursor()
 

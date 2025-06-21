@@ -7,6 +7,7 @@ def display_license():
         print("=== LICENSE NOTICE ===")
         print(license_text)
         print("======================\n")
+        time.sleep(5)
 
 display_license()
 

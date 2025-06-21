@@ -25,7 +25,7 @@ A brief description of what your project does.
 
 ## 📦 Installation
 
-python 2-Back.py
+2-Back.bat
 
 *Please refer to the License before considering sharing or editing the contents of this repository. 
 

@@ -18,7 +18,8 @@ Welcome to the Task repository. This holds the Python code for the 2-Back versio
 
 ## 📦 Installation
 
-2-Back.bat
+To both install and run the task, simply double click 2-Back.bat. 
+- You do need to have a valid pip and python installation (3.09+).
 
 --------------------------------------------------------------------------------------
 

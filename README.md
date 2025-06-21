@@ -13,7 +13,8 @@ Welcome to the Task repository. This holds the Python code for the 2-Back versio
 |-----------------------|-----------|
 | Functioning 2-Back task   | ✅        |
 | Automatically records and integrates EEG trigger codes            | ✅        |
-| Automatic processing of SDT and result output| ❌ (coming in the next update)        |
+| Measures of Reaction Time, Accuracy and Error            | ✅        |
+| Automatic processing of SDT and result output| ❌ coming in the next update        |
 
 
 ## 📦 Installation

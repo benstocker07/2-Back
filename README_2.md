@@ -1,5 +1,4 @@
-# 2-Back
-
+# 2-Back Task
 Welcome to the Task repository. This holds the Python code for the 2-Back version of the N-Back.
 
 - To run the task, simply download the repository and double click the main 2-Back.py file. All dependencies will be automatically installed (please have a valid pip installation for this to work).
@@ -10,22 +9,4 @@ Welcome to the Task repository. This holds the Python code for the 2-Back versio
 - [ ] Pilot test new integration with EEG (has previously worked cleanly)
 
 --------------------------------------------------------------------------------------
-
-
-A brief description of what your project does.
-
-## ✅ Features Overview
-
-| Feature               | Supported |
-|-----------------------|-----------|
-| Functioning 2-Back task   | ✅        |
-| Automatically records and integrates EEG trigger codes            | ✅        |
-| Automatic processing of SDT and result output| ❌        |
-
-
-## 📦 Installation
-
-python 2-Back.py
-
 *Please refer to the License before considering sharing or editing the contents of this repository. 
-

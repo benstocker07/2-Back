@@ -18,7 +18,7 @@ import numpy as np
 import json
 from pymongo import MongoClient
 
-def send_Mongo():
+def send_Mongo(participant_number, reactiontime, score):
 
         sample_data = [
             {
@@ -170,12 +170,6 @@ try:
 
 except FileExistsError:
     print(f"Failed to create the folder for Participant {participant_number}")
-        
-
-filename = os.path.join(folder_name, f"{participant_number} - N-Back Score.csv")
-filename2 = os.path.join(folder_name,  f"{participant_number} - N-Back Reaction Times.csv")
-filename3 = os.path.join(folder_name, f"{participant_number} - Combined Reaction Times.csv")
-filename4 = os.path.join(folder_name, f"{participant_number} - Combined Scores.csv")
 
 now = datetime.now()
 
@@ -417,19 +411,6 @@ def introduction():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, NoResponse) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, "0", name, "No Response")
                         )
-                        
-                with open(filename2, mode="a+") as file:
-                    file.write(f"{date_time_string}, {count}, {reactiontime}, N-Back\n")
-
-                with open(filename3, mode="a+") as file:
-                    file.write(f"{date_time_string}, {count}, {reactiontime}, N-Back\n")
-                    db_connection.commit()
-
-                with open(filename, mode="a+") as file:
-                    file.write(f"{date_time_string}, {count}, {score}, N-Back\n")
-                    
-                with open(filename4, mode="a+") as file:
-                    file.write(f"{date_time_string}, {count}, {score}, N-Back\n")
 
                 def scorerecord():
                     with db_connection:
@@ -445,7 +426,7 @@ def introduction():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, reactiontime, name, key_name)
                             )
-                send_Mongo()
+                send_Mongo(participant_number, reactiontime, score)
 
                 nb = None
                         

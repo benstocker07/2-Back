@@ -2,4 +2,5 @@ pygame
 numpy
 pandas
 requests
-random
+ctypes
+pymongo

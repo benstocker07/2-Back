@@ -18,12 +18,8 @@ import numpy as np
 import json
 from pymongo import MongoClient
 
-import threading
-from pymongo import MongoClient
-import json
-
 def send_Mongo(participant_number, reactiontime, score):
-    def mongo_worker(participant_number, reactiontime, score):
+
         sample_data = [
             {
                 "participant_number": participant_number,
@@ -33,17 +29,24 @@ def send_Mongo(participant_number, reactiontime, score):
             }
         ]
 
-        try:
-            client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/")
-            db = client["2-Back"]
-            collection = db["results"]
+        with open("data.json", "w") as f:
+            json.dump(sample_data, f, indent=2)
 
-            collection.insert_many(sample_data)
-            print("Data sent")
-        except Exception as e:
-            print(f"Failed to send data: {e}")
+        print("data.json created")
 
-    threading.Thread(target=mongo_worker, args=(participant_number, reactiontime, score)).start()
+        client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/")
+        db = client["2-Back"]
+        collection = db["results"]
+
+        with open("data.json", "r") as f:
+            data = json.load(f)
+
+        if isinstance(data, list):
+            collection.insert_many(data)
+        else:
+            collection.insert_one(data)
+
+        print("Data sent")
 
 def display_license():
         with open("LICENSE.txt", "r", encoding="utf-8") as f:
@@ -339,12 +342,9 @@ def introduction():
 
         starting = pygame.time.get_ticks()
         
-        pygame.display.update()
-        
+        pygame.display.update()        
         screen.fill(WHITE)
-
         keyprocessed = False
-
         score = 0
         
         while True:

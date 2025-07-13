@@ -342,12 +342,9 @@ def introduction():
 
         starting = pygame.time.get_ticks()
         
-        pygame.display.update()
-        
+        pygame.display.update()        
         screen.fill(WHITE)
-
         keyprocessed = False
-
         score = 0
         
         while True:

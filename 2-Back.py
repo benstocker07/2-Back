@@ -1,6 +1,53 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
 
+import subprocess
+import pygame, math
+import sys
+from pygame.locals import *
+import random, time
+import os
+import csv
+import time
+import pandas as pd
+from datetime import datetime
+from scipy.stats import norm
+import spwf
+import sqlite3
+import numpy as np
+import json
+from pymongo import MongoClient
+
+def send_Mongo():
+
+        sample_data = [
+            {
+                "participant_number": participant_number,
+                "reaction_time": reactiontime,
+                "score": score,
+                "source": "generated"
+            }
+        ]
+
+        with open("data.json", "w") as f:
+            json.dump(sample_data, f, indent=2)
+
+        print("data.json created")
+
+        client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/")
+        db = client["2-Back"]
+        collection = db["results"]
+
+        with open("data.json", "r") as f:
+            data = json.load(f)
+
+        if isinstance(data, list):
+            collection.insert_many(data)
+        else:
+            collection.insert_one(data)
+
+        print("Data sent")
+
 def display_license():
         with open("LICENSE.txt", "r", encoding="utf-8") as f:
             license_text = f.read()
@@ -10,21 +57,6 @@ def display_license():
         time.sleep(5)
 
 display_license()
-
-import subprocess
-import pygame, math
-import sys
-from pygame.locals import *
-import random, time
-import os
-import csv
-import pandas as pd
-from datetime import datetime
-from scipy.stats import norm
-import spwf
-import sqlite3
-import numpy as np
-
 learning = 12
 noise_trials = learning
 
@@ -39,51 +71,7 @@ def installation():
         except subprocess.CalledProcessError as e:
             print(f"Failed to install {package}: {e}")
 
-stimtracker_available = False
-
-try:
-    import cdtest
-    stimtracker_available = True
-except ImportError as e:
-    print(f"Failed to import pyxid2: {e}")
-    
-except FileNotFoundError as e:
-    if "ftd2xx64.dll" in str(e):
-        print(f"FileNotFoundError: {e}")
-        stimtracker_available = False
-
-def test_init():
-    if stimtracker_available:
-        cdtest.test1()
-
-def test_pre():
-    if stimtracker_available:
-        cdtest.test1()      
-
-def test_end():
-    if stimtracker_available:
-        cdtest.test2()
-
-if stimtracker_available == False:
-    stimconnect = str('Not Connected')
-elif stimtracker_available == True:
-    stimconnect = str('Connected')
-    
-print(f'\nStimTracker Status: {stimconnect}')
-
-def restingstate():
-
-    minutes = 5
-    
-    time.sleep(5)
-    cdtest.start()
-    print("Resting state started")
-    time.sleep(60*int(minutes))
-    cdtest.stop()
-
-#restingstate()
-
-#^^^^^^^^^^^^^^^^^^^^^ unhash to get resting state
+db_filename = "N-Back.db"
 
 db_connection = sqlite3.connect(db_filename)
 db_cursor = db_connection.cursor()
@@ -120,8 +108,6 @@ db_cursor.execute('''
         key TEXT
     )
 ''')
-
-db_filename = "N-Back.db"
 
 db_connection = sqlite3.connect(db_filename)
 db_cursor = db_connection.cursor()
@@ -179,6 +165,7 @@ login()
 folder_name = f'Data/Participant {participant_number}'
 
 try:
+    os.mkdir('Data')
     os.mkdir(folder_name)
 
 except FileExistsError:
@@ -231,15 +218,7 @@ def play_n_back(n, length):
             print(f"No match. Current digit is {sequence[i]}")
         time.sleep(1)
 
-def tester():
-    if pygame.KEYDOWN:
-        print(pygame.key.name)
-        cdtest.test()
-
-    pygame.time.wait(2000)
-
 def draw_text(text, position, color):
-    """Draw text on the screen."""
     text_surface = font.render(text, True, color)
     text_rect = text_surface.get_rect(center=position)
     screen.blit(text_surface, text_rect)
@@ -315,8 +294,6 @@ def introduction():
     current_index = 0
     score = 0
     running = True
-    if stimtracker_available:
-        cdtest.start()
         
     learningconv = learning-1
 
@@ -331,9 +308,6 @@ def introduction():
         pygame.time.wait(500)
         
     def correct():
-
-        if stimtracker_available:
-            cdtest.linetest()
         correctanswer = True
         endRT = time.time()
         screen.fill(WHITE)
@@ -369,9 +343,6 @@ def introduction():
 
         delay = (random.randint(0,5)*100)+1000
         pygame.time.wait(delay)        
-                
-        if stimtracker_available:
-            cdtest.test1()
 
         draw_text(str(sequence[current_index]), (WINDOW_SIZE[0] // 2, WINDOW_SIZE[1] // 2), BLACK)
 
@@ -405,40 +376,26 @@ def introduction():
                         
                         if sequence[current_index] == sequence[current_index - n]:
                             if event.key == pygame.K_j:
-                                if stimtracker_available:
-                                    cdtest.j()
-
                                 correct()
                                 score += 1
                                 hits += 1
 
                             elif event.key == pygame.K_f:
-                                if stimtracker_available:
-                                    cdtest.f()
-
                                 incorrect()
                                 false_alarms += 1
                
                         else:
                             if event.key == pygame.K_j:
-                                if stimtracker_available:
-                                    cdtest.j()
-
                                 incorrect()
                                 false_alarms += 1
                       
                             elif event.key == pygame.K_f:
-                                if stimtracker_available:
-                                    cdtest.f()
-
                                 correct()
                                 score += 1
                 
             if currenttime - starting >= 2000:
                 if keyprocessed == False:
                     reactiontime = 0
-                if stimtracker_available:
-                    cdtest.test()
 
                 screen.fill(WHITE)
                 pygame.display.update()
@@ -488,6 +445,8 @@ def introduction():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, reactiontime, name, key_name)
                             )
+                send_Mongo()
+
                 nb = None
                         
                 if keyprocessed == True:
@@ -545,8 +504,6 @@ def introduction():
                 c_prime = 0    
 
         
-    pygame.quit()
-    if stimtracker_available:
-        cdtest.stop()        
+    pygame.quit()     
     
 introduction()

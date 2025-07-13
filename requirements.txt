@@ -2,5 +2,4 @@ pygame
 numpy
 pandas
 requests
-ctypes
 pymongo

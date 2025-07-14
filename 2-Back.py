@@ -22,28 +22,45 @@ import threading
 from pymongo import MongoClient
 import json
 
+import threading
+import csv
+import os
+from pymongo import MongoClient
+from datetime import datetime
+
+LOCAL_SAVE_PATH = "unsent_data.csv"
+
+def save_locally(participant_number, reactiontime, score):
+    file_exists = os.path.isfile(LOCAL_SAVE_PATH)
+    with open(LOCAL_SAVE_PATH, mode="a", newline='') as file:
+        writer = csv.writer(file)
+        if not file_exists:
+            writer.writerow(["timestamp", "participant_number", "reaction_time", "score"])
+        writer.writerow([datetime.now().isoformat(), participant_number, reactiontime, score])
+    print("Saved locally")
+
 def send_Mongo(participant_number, reactiontime, score):
     def mongo_worker(participant_number, reactiontime, score):
-        sample_data = [
-            {
-                "participant_number": participant_number,
-                "reaction_time": reactiontime,
-                "score": score,
-                "source": "generated"
-            }
-        ]
+        sample_data = {
+            "timestamp": datetime.now().isoformat(),
+            "participant_number": participant_number,
+            "reaction_time": reactiontime,
+            "score": score
+        }
 
         try:
-            client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/")
+            client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/", serverSelectionTimeoutMS=5000)
             db = client["2-Back"]
             collection = db["results"]
 
-            collection.insert_many(sample_data)
-            print("Data sent")
+            collection.insert_one(sample_data)
+            print("Data sent to MongoDB")
         except Exception as e:
-            print(f"Failed to send data: {e}")
+            print(f"MongoDB upload failed: {e}")
+            save_locally(participant_number, reactiontime, score)
 
     threading.Thread(target=mongo_worker, args=(participant_number, reactiontime, score)).start()
+
 
 def display_license():
         with open("LICENSE.txt", "r", encoding="utf-8") as f:
@@ -423,7 +440,7 @@ def introduction():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, reactiontime, name, key_name)
                             )
-                send_Mongo(participant_number, reactiontime, score)
+                save_locally(participant_number, reactiontime, score)
 
                 nb = None
                         

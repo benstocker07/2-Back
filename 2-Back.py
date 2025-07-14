@@ -1,6 +1,10 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
 
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+print(os.getcwd())
+
 import subprocess
 import pygame, math
 import sys
@@ -60,9 +64,6 @@ def send_Mongo(participant_number, reactiontime, score):
             save_locally(participant_number, reactiontime, score)
 
     threading.Thread(target=mongo_worker, args=(participant_number, reactiontime, score)).start()
-
-script_dir = os.path.dirname(os.path.abspath(__file__))
-filepath = os.path.join(script_dir, "LICENSE.txt")
 
 def display_license():
         with open(filepath, "r", encoding="utf-8") as f:

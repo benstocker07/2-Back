@@ -1,11 +1,5 @@
-filename = "participant number.txt"
+import hashlib
 
-with open(filename, "r") as f:
-    first_line = f.readline()
-    words = first_line.split()
-    participant_number = None
-    for word in words:
-        if word.isdigit():
-            participant_number = int(word)
-
-folder_name = f'Participant {participant_number}'
+codes = ["23081999", "27072001"]  # add new codes here
+for c in codes:
+    print(f"{c}: {hashlib.sha256(c.encode()).hexdigest()}")

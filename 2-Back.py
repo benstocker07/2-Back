@@ -1,16 +1,17 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
-print(os.getcwd())
-
 import subprocess
 import pygame, math
 import sys
 from pygame.locals import *
 import random, time
 import os
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+print(os.getcwd())
+
 import csv
 import time
 import pandas as pd

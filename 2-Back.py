@@ -61,9 +61,11 @@ def send_Mongo(participant_number, reactiontime, score):
 
     threading.Thread(target=mongo_worker, args=(participant_number, reactiontime, score)).start()
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+filepath = os.path.join(script_dir, "LICENSE.txt")
 
 def display_license():
-        with open("LICENSE.txt", "r", encoding="utf-8") as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             license_text = f.read()
         print("=== LICENSE NOTICE ===")
         print(license_text)

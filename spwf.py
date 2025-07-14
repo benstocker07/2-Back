@@ -1,26 +1,28 @@
 import hashlib
+import sys
 
 hash_codes = []
 
-codes = ["23081999", "27072001"]  # add new codes here
+codes = ["23081999", "27072001"]
 
 for c in codes:
     hashed = hashlib.sha256(c.encode()).hexdigest()
     hash_codes.append(hashed)
 
-tries = 0 
+tries = 0
+max_tries = 5
 
-while True:
-    
-    tries = tries + 1
-
-    login = input('Login Code: ')
-    
+while tries < max_tries:
+    login = input('Login Code: ').strip()
     login_hash = hashlib.sha256(login.encode()).hexdigest()
-    print(f"Login hash: {login_hash}")
 
     if login_hash in hash_codes:
         print("Welcome")
-    
+        break
     else:
-        tries = tries + 1
+        tries += 1
+        print(f"Invalid code. Attempts left: {max_tries - tries}")
+
+if tries == max_tries:
+    print("Too many invalid attempts. Exiting.")
+    sys.exit(1)

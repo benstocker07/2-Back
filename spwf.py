@@ -1,5 +1,4 @@
-import hashlib
-import sys
+import hashlib, subprocess, sys
 
 def load_hashes(filename):
     with open(filename, "r") as f:
@@ -16,7 +15,7 @@ while tries < max_tries:
 
     if login_hash in hash_codes:
         print("Welcome")
-        subprocess.run(["python", "install.py"], shell=True)
+        subprocess.run(["python", "2-Back/2-Back-main/2-Back.py"], shell=True)
         break
     else:
         tries += 1

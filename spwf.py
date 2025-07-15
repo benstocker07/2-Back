@@ -16,6 +16,7 @@ while tries < max_tries:
 
     if login_hash in hash_codes:
         print("Welcome")
+        subprocess.run(["python", "install.py"], shell=True)
         break
     else:
         tries += 1

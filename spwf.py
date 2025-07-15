@@ -3,7 +3,6 @@ import sys
 
 def load_hashes(filename):
     with open(filename, "r") as f:
-        # Strip lines to remove newlines and blank spaces
         return {line.strip() for line in f if line.strip()}
 
 hash_codes = load_hashes("keys.txt")

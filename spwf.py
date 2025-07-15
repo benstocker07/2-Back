@@ -5,7 +5,7 @@ def load_hashes(filename):
     with open(filename, "r") as f:
         return {line.strip() for line in f if line.strip()}
 
-hash_codes = load_hashes("keys.txt")
+hash_codes = load_hashes("login.txt")
 
 tries = 0
 max_tries = 5

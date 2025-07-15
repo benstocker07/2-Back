@@ -1,11 +1,6 @@
 import os
 from pymongo import MongoClient
-
 import csv
-
-client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/", serverSelectionTimeoutMS=5000)
-db = client["2-Back"]
-collection = db["results"]
 
 LOCAL_SAVE_PATH = "unsent_data.csv"
 

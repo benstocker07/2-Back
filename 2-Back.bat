@@ -1,3 +1,4 @@
-pyarmor g 2-Back.py
+pyarmor g Task_Setup.py
+python dist/Task_Setup.py
 
-python 2-Back.py
+

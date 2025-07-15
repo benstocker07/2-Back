@@ -38,7 +38,7 @@ def download_and_extract_zip(zip_url, extract_to="."):
 def ensure_sh_file():
     if not os.path.exists("2-Back.sh"):
         with open("2-Back.sh", "w") as f:
-            f.write("#!/bin/bash\n\npython3 main.py\n")
+            f.write("#!/bin/bash\n\npython3 2-Back.py\n")
         subprocess.run(["chmod", "+x", "2-Back.sh"])
         print("Created and made 2-Back.sh executable.")
 

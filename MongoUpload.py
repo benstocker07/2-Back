@@ -18,7 +18,9 @@ def upload_local_csv():
         return
 
     try:
-        client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/")
+        import certifi
+        ca = certifi.where()
+        client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/", ssl_cert_reqs=ssl.CERT_NONE)
         db = client["2-Back"]
         collection = db["results"]
         collection.insert_many(data)

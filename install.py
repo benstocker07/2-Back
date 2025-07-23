@@ -52,5 +52,5 @@ if __name__ == "__main__":
 
     if system_type == 'Windows':
         
-        script_path = "dist/2-Back.py"
-        subprocess.run(["python", script_path])
+        #script_path = "dist/2-Back.py"
+        subprocess.run("2-Back.bat")

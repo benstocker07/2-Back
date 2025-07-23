@@ -10,7 +10,7 @@ tries = 0
 max_tries = 5
 
 while tries < max_tries:
-    login = input("Login Code: ").strip()
+    login = input("\n\nLogin Code: ").strip()
     login_hash = hashlib.sha256(login.encode()).hexdigest()
 
     if login_hash in hash_codes:

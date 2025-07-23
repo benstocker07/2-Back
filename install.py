@@ -15,18 +15,18 @@ import ctypes
 import shutil
 
 def download_and_extract_zip(zip_url, extract_to="."):
-    print(f"Downloading ZIP...")
+    print(f"Downloading {zip_url}...\n")
     response = requests.get(zip_url)
     response.raise_for_status()
 
-    print("Extracting repository...")
+    print("Extracting repository...\n")
     with zipfile.ZipFile(io.BytesIO(response.content)) as z:
         z.extractall(extract_to)
         extracted_folder_name = z.namelist()[0].split('/')[0]
 
     new_cwd = os.path.join(extract_to, extracted_folder_name)
     os.chdir(new_cwd)
-    print(f"Changed working directory to: {os.getcwd()}")
+    print(f"Changed working directory to: {os.getcwd()}\n")
 
     if not os.listdir():
         print("Error: Extracted folder is empty. Please check the installation or the ZIP contents.")
@@ -48,17 +48,9 @@ if __name__ == "__main__":
 
     system_type = download_and_extract_zip(zip_url, extract_to)
 
-    if system_type == "Windows":
-        if os.path.exists("2-Back.bat"):
-            print("Running 2-Back.bat ...")
-            subprocess.run(["2-Back.bat"], shell=True)
-        else:
-            print("Error: 2-Back.bat not found.")
-    elif system_type in ("Linux", "Darwin"):
-        ensure_sh_file()
-        print("Running 2-Back.sh ...")
-        subprocess.run(["./2-Back.sh"])
-    else:
-        print(f"Unsupported OS: {system_type}")
+    print(f'\nOS Type: {system_type}')
+
+    if system_type == 'Windows':
         
-#import MongoTest
+        script_path = "dist/2-Back.py"
+        subprocess.run(["python", script_path])

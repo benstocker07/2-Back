@@ -5,6 +5,7 @@ import csv
 LOCAL_SAVE_PATH = "unsent_data.csv"
 current_dir = os.getcwd()
 
+print(current_dir)
 
 def upload_local_csv():
     if not os.path.exists(LOCAL_SAVE_PATH):

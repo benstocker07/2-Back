@@ -1,6 +1,5 @@
-import os, ctypes, shutil, ssl
+import os, ctypes, shutil, ssl, csv
 from pymongo import MongoClient
-import csv
 
 LOCAL_SAVE_PATH = "dist/unsent_data.csv"
 current_dir = os.getcwd()

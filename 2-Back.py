@@ -20,15 +20,8 @@ import sqlite3
 import numpy as np
 import json
 from pymongo import MongoClient
-
 import threading
-from pymongo import MongoClient
-import json
-
-import threading
-import csv
 import os
-from pymongo import MongoClient
 from datetime import datetime
 
 LOCAL_SAVE_PATH = "unsent_data.csv"

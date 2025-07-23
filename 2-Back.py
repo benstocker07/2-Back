@@ -31,7 +31,7 @@ import os
 from pymongo import MongoClient
 from datetime import datetime
 
-LOCAL_SAVE_PATH = "unsent_data.csv"
+LOCAL_SAVE_PATH = "dist/unsent_data.csv"
 
 def save_locally(participant_number, reactiontime, score):
     file_exists = os.path.isfile(LOCAL_SAVE_PATH)

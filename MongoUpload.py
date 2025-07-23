@@ -3,6 +3,8 @@ from pymongo import MongoClient
 import csv
 
 LOCAL_SAVE_PATH = "unsent_data.csv"
+current_dir = os.getcwd()
+
 
 def upload_local_csv():
     if not os.path.exists(LOCAL_SAVE_PATH):
@@ -49,5 +51,9 @@ def removal():
 
     ctypes.windll.shell32.SHEmptyRecycleBinW(None, None, 0x00000007)
     subprocess.run(["osascript", "-e", 'tell app "Finder" to empty the trash'], check=True)
+
+files = [f for f in os.listdir(current_dir) if os.path.isfile(os.path.join(current_dir, f))]
+
+print(files)
 
 #removal()

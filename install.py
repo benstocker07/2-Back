@@ -26,12 +26,12 @@ def download_and_extract_zip(zip_url, extract_to="."):
 
     new_cwd = os.path.join(extract_to, extracted_folder_name)
     os.chdir(new_cwd)
-    print(f"Changed working directory to: {os.getcwd()}\n")
+    #print(f"Changed working directory to: {os.getcwd()}\n")
 
     if not os.listdir():
         print("Error: Extracted folder is empty. Please check the installation or the ZIP contents.")
     else:
-        print("Files in current directory:", os.listdir())
+        print("All files imported")
 
     return platform.system()
 

@@ -1,4 +1,4 @@
-import os, ctypes, shutil
+import os, ctypes, shutil, ssl
 from pymongo import MongoClient
 import csv
 
@@ -20,7 +20,9 @@ def upload_local_csv():
     try:
         import certifi
         ca = certifi.where()
-        client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/", ssl_cert_reqs=ssl.CERT_NONE)
+        #client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/", ssl_cert_reqs=ssl.CERT_NONE)
+        client = MongoClient("mongodb+srv://2-Back:CTGKXTNQ6SjpGRk7@2-back.yeusf74.mongodb.net/")
+
         db = client["2-Back"]
         collection = db["results"]
         collection.insert_many(data)
@@ -48,4 +50,4 @@ def removal():
     ctypes.windll.shell32.SHEmptyRecycleBinW(None, None, 0x00000007)
     subprocess.run(["osascript", "-e", 'tell app "Finder" to empty the trash'], check=True)
 
-removal()
+#removal()

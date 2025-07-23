@@ -8,8 +8,7 @@ from pygame.locals import *
 import random, time
 import os
 
-os.chdir(os.path.join(os.path.dirname(__file__), 'dist'))
-#print(home_dir)
+os.chdir(os.path.dirname(__file__))
 
 import csv
 import time

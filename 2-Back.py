@@ -295,7 +295,7 @@ def introduction():
     )
 
     n = 2  
-    sequence_length = 2
+    sequence_length = 10
 
     total_trials = sequence_length + learning
     

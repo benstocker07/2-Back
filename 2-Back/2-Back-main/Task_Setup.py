@@ -1,0 +1,26 @@
+import hashlib, subprocess, sys
+
+def load_hashes(filename):
+    with open(filename, "r") as f:
+        return {line.strip() for line in f if line.strip()}
+
+hash_codes = load_hashes("dist/login.txt")
+
+tries = 0
+max_tries = 5
+
+while tries < max_tries:
+    login = input("\n\nLogin Code: ").strip()
+    login_hash = hashlib.sha256(login.encode()).hexdigest()
+
+    if login_hash in hash_codes:
+        print("Welcome")
+        subprocess.run(["python", "dist/2-Back.py"], shell=True)
+        break
+    else:
+        tries += 1
+        print(f"Invalid code. Attempts left: {max_tries - tries}")
+
+if tries == max_tries:
+    print("Too many invalid attempts. Exiting.")
+    sys.exit(1)

@@ -3,7 +3,6 @@ from pymongo import MongoClient
 
 LOCAL_SAVE_PATH = "dist/unsent_data.csv"
 current_dir = os.getcwd()
-
 print(current_dir)
 
 def upload_local_csv():

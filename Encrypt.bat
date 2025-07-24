@@ -6,5 +6,4 @@ py -m pyarmor.cli gen MongoUpload.py
 
 REM python dist/Task_Setup.py
 REM python dist/MongoUpload.py
-
 REM pause

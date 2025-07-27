@@ -7,7 +7,7 @@ Welcome to the Task repository. This holds the Python code for the 2-Back versio
 
 --------------------------------------------------------------------------------------
 
-## ✅ Task Overview
+## Task Overview
 
 | Feature               | Supported |
 |-----------------------|-----------|

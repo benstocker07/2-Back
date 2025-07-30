@@ -1,6 +1,6 @@
 @echo off
 
-python dist/Task_Setup.py
-python dist/MongoUpload.py
+py dist/Task_Setup.py
+py dist/MongoUpload.py
 
 pause

@@ -5,4 +5,3 @@ requests
 pymongo
 scipy
 pyarmor
-Pymongo

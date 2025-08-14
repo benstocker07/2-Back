@@ -5,3 +5,4 @@ MongoUpload.py
 Task_Setup.py
 install.py
 Run me.py
+*.log

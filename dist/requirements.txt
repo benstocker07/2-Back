@@ -2,6 +2,6 @@ pygame
 numpy
 pandas
 requests
-pymongo
+discordwebhook
 scipy
 pyarmor

@@ -45,7 +45,7 @@ def upload_local_csv():
         response = webhook.execute()
 
         if response.status_code == 400:
-            webhook2 = DiscordWebhook(url=hook, username="File Upload", thread_name=FeedID)
+            webhook2 = DiscordWebhook(url=hook, username="File Upload", thread_name=str(FeedID))
             with open(LOCAL_SAVE_PATH, "rb") as f:
                 webhook2.add_file(file=f.read(), filename=LOCAL_SAVE_PATH)
 

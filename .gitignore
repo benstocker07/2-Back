@@ -8,3 +8,7 @@ Run me.py
 *.log
 7 - Backup Data.csv
 dist/unsent_data.csv
+dist/N-Back count.txt
+dist/N-Back.db
+dist/pyarmor_runtime_000000/__pycache__/__init__.cpython-313.pyc
+dist/pyarmor_runtime_000000/__pycache__/__init__.cpython-313.pyc

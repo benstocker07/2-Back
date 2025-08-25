@@ -3,7 +3,6 @@ from discord_webhook import DiscordWebhook
 import requests
 
 def read_participant_number():
-    try:
         with open(f'{addpath}participant_number.txt', "r") as file:
             participant_number = file.read().strip()
             return participant_number

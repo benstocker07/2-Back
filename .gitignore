@@ -1,6 +1,5 @@
 Encrypt.bat
 HashGen.py
-MongoUpload.py
 2-Back.py
 Task_Setup.py
 install.py
@@ -13,5 +12,4 @@ dist/N-Back.db
 dist/pyarmor_runtime_000000/__pycache__/__init__.cpython-313.pyc
 dist/pyarmor_runtime_000000/__pycache__/__init__.cpython-313.pyc
 Upload.py
-Upload.py
-Upload.py
+

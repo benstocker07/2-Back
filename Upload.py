@@ -1,5 +1,4 @@
 import os, ctypes, shutil, ssl, csv
-from pymongo import MongoClient
 from discord_webhook import DiscordWebhook
 import requests
 

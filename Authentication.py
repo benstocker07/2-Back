@@ -1,9 +1,7 @@
 import tkinter as tk
 import hashlib, time
 from tkinter import ttk, messagebox
-import subprocess
-import pkg_resources
-import threading
+import subprocess, pkg_resources, threading
 
 text = "1234"
 passw = hashlib.sha256(text.encode())
@@ -88,11 +86,11 @@ def installation_and_joystick_check():
                     
     else:
         print("Pygame is already installed.")
-        import pygame
         update_status("All packages already installed.", 80)
         time.sleep(1)
 
     update_status("Initialising Dependencies...", 80)
+    import pygame
     pygame.init()
     time.sleep(0.3)
 
@@ -124,7 +122,7 @@ def start_thread():
     thread.start()
 
 root = tk.Tk()
-root.title("rJORT Setup")
+root.title("2-Back Setup")
 root.geometry("400x120")
 root.resizable(False, False)
 root.configure(bg="white")

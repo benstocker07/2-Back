@@ -1,12 +1,11 @@
 import tkinter as tk
-import hashlib, time
+import hashlib
 from tkinter import ttk, messagebox
 import subprocess
 import pkg_resources
 import threading
 
 text = "1234"
-
 passw = hashlib.sha256(text.encode())
 
 hash_hex = passw.hexdigest()
@@ -24,7 +23,6 @@ def check_password(event=None):
 
 def on_closing():
     messagebox.showwarning("Action Denied", "You must login to access the task")
-    
 root = tk.Tk()
 root.iconbitmap(default="")
 root.title("Password Entry")
@@ -90,6 +88,7 @@ def installation_and_joystick_check():
                     
     else:
         print("Pygame is already installed.")
+        import pygame
         update_status("All packages already installed.", 80)
         time.sleep(1)
 
@@ -155,3 +154,4 @@ root.after(99, start_thread)
 update_status("Welcome to the task!\n\n It is now loading the required files.", 0)
 time.sleep(5)
 root.mainloop()
+

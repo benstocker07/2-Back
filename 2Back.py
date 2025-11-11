@@ -4,6 +4,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import hashlib
+from pathlib import Path
 
 def check_password(event=None):
     global entered

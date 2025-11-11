@@ -1,5 +1,5 @@
 import tkinter as tk
-import hashlib
+import hashlib, time
 from tkinter import ttk, messagebox
 import subprocess
 import pkg_resources
@@ -155,4 +155,3 @@ root.after(99, start_thread)
 update_status("Welcome to the task!\n\n It is now loading the required files.", 0)
 time.sleep(5)
 root.mainloop()
-

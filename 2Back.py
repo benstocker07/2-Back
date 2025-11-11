@@ -223,7 +223,7 @@ SCREEN_WIDTH, SCREEN_HEIGHT = (
 
 WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
-pygame.display.set_caption("N-Back Game")
+pygame.display.set_caption("N-Back")
 
 pygame.font.init()
 FONT_SIZE = 240
@@ -317,7 +317,7 @@ def introduction():
     )
 
     n = 2  
-    sequence_length = 10
+    sequence_length = 360
 
     total_trials = sequence_length + learning
     
@@ -483,6 +483,16 @@ def introduction():
             nbacktrue()
             
         current_index += 1
+
+        if current_index == sequence_length/3:
+            print('Block 1 finishes')
+            
+            for i in range(0,5):
+                three_sec = [1,2,3]
+                time.sleep(1)
+                
+                if i in three_sec:
+                    print(f'{i} to go')
             
         if current_index >= sequence_length:
             running = False

@@ -4,6 +4,10 @@
 import tkinter as tk
 from tkinter import messagebox
 import hashlib
+import os
+
+data_dir = Path(__file__).resolve().parent.parent / "Data"
+data_dir.mkdir(exist_ok=True)
 
 def check_password(event=None):
     global entered

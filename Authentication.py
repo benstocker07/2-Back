@@ -1,5 +1,5 @@
 import tkinter as tk
-import hashlib
+import hashlib, time
 from tkinter import ttk, messagebox
 import subprocess
 import pkg_resources

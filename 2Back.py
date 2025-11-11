@@ -1,6 +1,50 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
 
+import tkinter as tk
+from tkinter import messagebox
+import hashlib
+
+def check_password(event=None):
+    global entered
+    entered = entry.get()
+    if len(entered) > 0:
+        print(entered)
+        root.destroy()
+    else:
+        messagebox.showerror("Participant ID Entry", "Please provide a participant number.")
+        entry.delete(0, tk.END)
+
+def on_closing():
+    messagebox.showwarning("Value Missing", "Please provide a participant number")
+    
+root = tk.Tk()
+root.iconbitmap(default="")
+root.title("Participant ID Entry")
+root.configure(bg="white")
+
+window_width = 400
+window_height = 200
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+x = (screen_width - window_width) // 2
+y = (screen_height - window_height) // 2
+root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
+frame = tk.Frame(root, bg="white")
+frame.pack(expand=True, fill="both")
+
+tk.Label(frame, text="Enter Participant Number:", bg="white", fg="#333", font=("Arial", 14)).pack(pady=20)
+entry = tk.Entry(frame, show="*", font=("Arial", 14), justify="center")
+entry.pack(pady=10)
+entry.focus()
+
+tk.Button(frame, text="Submit", command=check_password, bg="#4caf50", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
+
+root.bind("<Return>", check_password)
+root.protocol("WM_DELETE_WINDOW", on_closing)
+root.mainloop()
+
 import subprocess
 import pygame, math
 import sys, shutil, ctypes
@@ -22,7 +66,7 @@ import threading
 import os
 from datetime import datetime
 
-LOCAL_SAVE_PATH = "unsent_data.csv"
+LOCAL_SAVE_PATH = f'Participant {entered}.csv'
 
 def save_locally(participant_number, reactiontime, score):
     file_exists = os.path.isfile(LOCAL_SAVE_PATH)
@@ -138,8 +182,7 @@ def login():
     global participant_number
     while True:
         #participant_number = input("\nParticipant Number: ")
-        participant_number = 'TEST'
-        p2 = input(f'Check participant number: {participant_number}. Re-enter participant number: ')
+        participant_number = entered
         p2 = participant_number
 
         if p2 == participant_number:

@@ -1,7 +1,0 @@
-pygame
-numpy
-pandas
-requests
-discord-webhook
-scipy
-pyarmor

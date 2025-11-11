@@ -4,7 +4,7 @@ cd /d "%~dp0"
 
 pip install -r dist/requirements.txt
 
-py Authentication.py
-py 2-Back.py
+py dist/Task_Setup.py
+py dist/DisUpload.py
 
 pause

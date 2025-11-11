@@ -6,6 +6,7 @@ import pkg_resources
 import threading
 
 text = "1234"
+
 passw = hashlib.sha256(text.encode())
 
 hash_hex = passw.hexdigest()
@@ -23,6 +24,7 @@ def check_password(event=None):
 
 def on_closing():
     messagebox.showwarning("Action Denied", "You must login to access the task")
+    
 root = tk.Tk()
 root.iconbitmap(default="")
 root.title("Password Entry")

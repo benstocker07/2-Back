@@ -4,10 +4,6 @@
 import tkinter as tk
 from tkinter import messagebox
 import hashlib
-import os
-
-data_dir = Path(__file__).resolve().parent.parent / "Data"
-data_dir.mkdir(exist_ok=True)
 
 def check_password(event=None):
     global entered
@@ -104,7 +100,48 @@ def installation():
         except subprocess.CalledProcessError as e:
             print(f"Failed to install {package}: {e}")
 
-db_filename = "N-Back.db"
+if os.path.exists(count_file):
+    with open(count_file, 'r') as f:
+        count = int(f.read())
+else:
+    count = 0
+
+count += 1
+
+with open(count_file, 'w') as f:
+    f.write(str(count))
+
+def login():
+    global participant_number
+    while True:
+        participant_number = entered
+        p2 = participant_number
+
+        if p2 == participant_number:
+            print("\nCorrect login")
+            with open('participant number.txt', "w+") as file:
+                file.write(participant_number)
+            break
+        else:
+            print("\nIncorrect match of participant number. Re-check the number.\n")
+
+login()
+
+folder_name = f'Data/Participant {participant_number}'
+
+try:
+    data_dir = Path(__file__).resolve().parent.parent / "Data"
+    data_dir.mkdir(exist_ok=True)
+
+    participant_dir = data_dir / f"Participant {participant_number}"
+    participant_dir.mkdir(exist_ok=False)
+
+    print(f"Created folder for Participant {participant_number}: {participant_dir}")
+
+except FileExistsError:
+    print(f"Folder for Participant {participant_number} already exists.")
+
+db_filename = f'{data_dir}/N-Back.db'
 
 db_connection = sqlite3.connect(db_filename)
 db_cursor = db_connection.cursor()
@@ -170,43 +207,6 @@ db_cursor.execute('''
 ''')
 
 count_file = 'N-Back count.txt'
-
-if os.path.exists(count_file):
-    with open(count_file, 'r') as f:
-        count = int(f.read())
-else:
-    count = 0
-
-count += 1
-
-with open(count_file, 'w') as f:
-    f.write(str(count))
-
-def login():
-    global participant_number
-    while True:
-        #participant_number = input("\nParticipant Number: ")
-        participant_number = entered
-        p2 = participant_number
-
-        if p2 == participant_number:
-            print("\nCorrect login")
-            with open('participant number.txt', "w+") as file:
-                file.write(participant_number)
-            break
-        else:
-            print("\nIncorrect match of participant number. Re-check the number.\n")
-
-login()
-
-folder_name = f'Data/Participant {participant_number}'
-
-try:
-    os.mkdir('Data')
-    os.mkdir(folder_name)
-
-except FileExistsError:
-    print(f"Failed to create the folder for Participant {participant_number}")
 
 now = datetime.now()
 

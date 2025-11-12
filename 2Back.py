@@ -474,7 +474,6 @@ def introduction():
         current_index += 1
 
         if current_index == sequence_length/3:
-            print('Block 1 finishes')
             
             for i in range(0,5):
                 three_sec = [1,2,3]

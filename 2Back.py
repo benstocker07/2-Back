@@ -513,6 +513,7 @@ def introduction():
                 c_prime = 0
 
             #closing information to go here
+            print('Task completed')
         
     pygame.quit()     
     

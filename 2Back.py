@@ -90,17 +90,6 @@ display_license()
 learning = 12
 noise_trials = learning
 
-def installation():
-
-    packages_to_install = ["pygame", "pandas", "pyxid2", "numpy"]
-
-    for package in packages_to_install:
-        try:
-            subprocess.check_call(["pip", "install", package])
-            print(f"Successfully installed {package}")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to install {package}: {e}")
-
 count_file = 'N-Back count.txt'
 
 if os.path.exists(count_file):

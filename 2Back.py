@@ -531,7 +531,6 @@ def introduction():
                 print("No hits or false alarms to calculate d' and c.")
                 d_prime = 0
                 c_prime = 0    
-
         
     pygame.quit()     
     

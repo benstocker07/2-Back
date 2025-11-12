@@ -384,15 +384,13 @@ def introduction():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                    
                 elif event.type == pygame.KEYDOWN and not keyprocessed:
                     key_name = pygame.key.name(event.key)
-                    
-                                                    
-                    if event.key in KEY_MAPPING:
-                        
+                                                     
+                    if event.key in KEY_MAPPING:                        
                         keypress = True
                         keyprocessed = True
-
                         reactiontime = currenttime - starting                           
                         
                         if sequence[current_index] == sequence[current_index - n]:
@@ -464,7 +462,6 @@ def introduction():
                 else:
                     emptyrtrecord()
                     emptyscorerecord()
-
                 break
         
         if sequence[current_index] == sequence[current_index - n]:

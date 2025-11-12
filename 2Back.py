@@ -514,6 +514,41 @@ def introduction():
 
             #closing information to go here
             print('Task completed')
+            
+            def main():
+                pygame.init()
+                width, height = 800, 600
+                screen = pygame.display.set_mode((width, height))
+                pygame.display.set_caption("Thank You")
+                WHITE = (255, 255, 255)
+                BLACK = (0, 0, 0)
+                GRAY = (200, 200, 200)
+                font = pygame.font.Font(None, 72)
+                small_font = pygame.font.Font(None, 48)
+                text = "Thank you for completing the task"
+                text_surf = font.render(text, True, BLACK)
+                text_rect = text_surf.get_rect(center=(width // 2, height // 2 - 50))
+                button_text = small_font.render("Exit (press J)", True, BLACK)
+                button_rect = button_text.get_rect(center=(width // 2, height // 2 + 100))
+                clock = pygame.time.Clock()
+                running = True
+                while running:
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            running = False
+                        elif event.type == pygame.KEYDOWN and event.key == pygame.K_j:
+                            running = False
+                    screen.fill(WHITE)
+                    pygame.draw.rect(screen, GRAY, button_rect.inflate(40, 20))
+                    screen.blit(text_surf, text_rect)
+                    screen.blit(button_text, button_rect)
+                    pygame.display.flip()
+                    clock.tick(60)
+                pygame.quit()
+                sys.exit()
+
+            if __name__ == "__main__":
+                main()
         
     pygame.quit()     
     

@@ -476,10 +476,10 @@ def introduction():
         if current_index == sequence_length/3:
             
             for i in range(0,5):
-                three_sec = [1,2,3]
+                timerange = [1,2,3]
                 time.sleep(1)
                 
-                if i in three_sec:
+                if i in timerange:
                     print(f'{i} to go')
             
         if current_index >= sequence_length:

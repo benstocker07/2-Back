@@ -506,11 +506,6 @@ def introduction():
             if hits > 0 and false_alarms > 0:
                 z_hit, z_false_alarm, d_prime, c_prime = calculate_d_prime_and_c(hits, false_alarms, total_trials, noise_trials)
 
-                print("Z-Hit:", z_hit)
-                print("Z-False:", z_false_alarm)
-                print("d' (Sensitivity):", d_prime)
-                print("c (Response Bias):", c_prime)
-
                 with db_connection:
                     db_cursor.execute(
                         "INSERT INTO SensitivityScores (Z_Hit, Z_False, Sensitivity, ResponseBias) VALUES (?, ?, ?, ?)",
@@ -518,7 +513,9 @@ def introduction():
             else:
                 print("No hits or false alarms to calculate d' and c.")
                 d_prime = 0
-                c_prime = 0    
+                c_prime = 0
+
+            #closing information to go here
         
     pygame.quit()     
     

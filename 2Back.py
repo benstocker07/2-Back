@@ -512,7 +512,6 @@ def introduction():
                 d_prime = 0
                 c_prime = 0
 
-            #closing information to go here
             print('Task completed')
             
             def main():

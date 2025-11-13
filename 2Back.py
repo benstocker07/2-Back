@@ -67,16 +67,6 @@ import threading
 import os
 from datetime import datetime
 
-LOCAL_SAVE_PATH = f'{data_dir}/Participant {entered}.csv'
-
-def save_locally(participant_number, reactiontime, score):
-    file_exists = os.path.isfile(LOCAL_SAVE_PATH)
-    with open(LOCAL_SAVE_PATH, mode="a", newline='') as file:
-        writer = csv.writer(file)
-        if not file_exists:
-            writer.writerow(["timestamp", "participant_number", "reaction_time", "score"])
-        writer.writerow([datetime.now().isoformat(), participant_number, reactiontime, score])
-
 def display_license():
         with open("LICENSE.txt", "r", encoding="utf-8") as f:
             license_text = f.read()
@@ -131,6 +121,16 @@ try:
 
 except FileExistsError:
     print(f"Folder for Participant {participant_number} already exists.")
+
+LOCAL_SAVE_PATH = f'{data_dir}/Participant {entered}.csv'
+
+def save_locally(participant_number, reactiontime, score):
+    file_exists = os.path.isfile(LOCAL_SAVE_PATH)
+    with open(LOCAL_SAVE_PATH, mode="a", newline='') as file:
+        writer = csv.writer(file)
+        if not file_exists:
+            writer.writerow(["timestamp", "participant_number", "reaction_time", "score"])
+        writer.writerow([datetime.now().isoformat(), participant_number, reactiontime, score])
 
 db_filename = f'{data_dir}/N-Back.db'
 

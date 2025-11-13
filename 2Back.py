@@ -122,7 +122,7 @@ try:
 except FileExistsError:
     print(f"Folder for Participant {participant_number} already exists.")
 
-LOCAL_SAVE_PATH = f'{data_dir}/Participant {entered}.csv'
+LOCAL_SAVE_PATH = f'{participant_dir}/Participant {entered}.csv'
 
 def save_locally(participant_number, reactiontime, score):
     file_exists = os.path.isfile(LOCAL_SAVE_PATH)

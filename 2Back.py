@@ -76,7 +76,7 @@ def display_license():
         time.sleep(5)
 
 display_license()
-learning = 12
+learning = 20
 noise_trials = learning
 
 count_file = 'N-Back count.txt'
@@ -99,7 +99,6 @@ def login():
         p2 = participant_number
 
         if p2 == participant_number:
-            print("\nCorrect login")
             with open('participant number.txt', "w+") as file:
                 file.write(participant_number)
             break

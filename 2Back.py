@@ -76,7 +76,6 @@ def save_locally(participant_number, reactiontime, score):
         if not file_exists:
             writer.writerow(["timestamp", "participant_number", "reaction_time", "score"])
         writer.writerow([datetime.now().isoformat(), participant_number, reactiontime, score])
-    print("Saved locally")
 
 def display_license():
         with open("LICENSE.txt", "r", encoding="utf-8") as f:

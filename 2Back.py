@@ -67,7 +67,7 @@ import threading
 import os
 from datetime import datetime
 
-LOCAL_SAVE_PATH = f'Participant {entered}.csv'
+LOCAL_SAVE_PATH = f'{data_dir}/Participant {entered}.csv'
 
 def save_locally(participant_number, reactiontime, score):
     file_exists = os.path.isfile(LOCAL_SAVE_PATH)

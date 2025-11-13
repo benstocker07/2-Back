@@ -102,11 +102,6 @@ def installation_and_joystick_check():
     joystick_count = pygame.joystick.get_count()
     time.sleep(0.3)
 
-    if joystick_count < 1:
-        messagebox.showerror("Joystick Error", "Joystick not connected.")
-        root.destroy()
-        exit()
-
     try:
         update_status("Connecting to pygame window", 97)
         update_status(f"Pygame connected", 100)

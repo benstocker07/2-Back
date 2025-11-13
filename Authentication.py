@@ -108,12 +108,10 @@ def installation_and_joystick_check():
         exit()
 
     try:
-        update_status("Connecting to joystick...", 97)
-        update_status(f"Joystick connected", 100)
+        update_status("Connecting to pygame window", 97)
+        update_status(f"Pygame connected", 100)
     except pygame.error as e:
-        messagebox.showerror("Joystick Error", f"Could not initialize joystick: {e}")
-        root.destroy()
-        exit()
+        print()
 
     root.after(2000, root.destroy)
 

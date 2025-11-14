@@ -65,7 +65,7 @@ def update_status(message, percent_value):
 def installation_and_joystick_check():
     packages_to_install = [
         "pygame", "pandas", "pymysql", "statsmodels",
-        "seaborn", "numpy", "matplotlib", "scipy", "joystick", "setuptools"
+        "seaborn", "numpy", "scipy", "setuptools"
     ]
 
     installed_packages = {pkg.key for pkg in pkg_resources.working_set}
@@ -96,8 +96,6 @@ def installation_and_joystick_check():
         time.sleep(1)
 
     update_status("Initialising Dependencies...", 80)
-    import pygame
-    pygame.init()
     time.sleep(0.3)
 
     update_status("Initialising remaining modules...", 90)

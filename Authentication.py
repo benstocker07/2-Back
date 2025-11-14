@@ -99,12 +99,7 @@ def installation_and_joystick_check():
     pygame.init()
     time.sleep(0.3)
 
-    update_status("Initialising joystick module...", 90)
-    pygame.joystick.init()
-    time.sleep(0.3)
-
-    update_status("Checking for joysticks...", 95)
-    joystick_count = pygame.joystick.get_count()
+    update_status("Initialising remaining modules...", 90)
     time.sleep(0.3)
 
     try:

@@ -65,7 +65,7 @@ def update_status(message, percent_value):
 def installation_and_joystick_check():
     packages_to_install = [
         "pygame", "pandas", "pymysql", "statsmodels",
-        "seaborn", "numpy", "matplotlib", "scipy", "joystick, setuptools"
+        "seaborn", "numpy", "matplotlib", "scipy", "joystick", "setuptools"
     ]
 
     installed_packages = {pkg.key for pkg in pkg_resources.working_set}

@@ -436,10 +436,9 @@ def introduction():
                         "counter": count,
                         "score": '0',
                         "task_type": "2-back",
-                        "NoResponse": "0",
-                        "user_key": 'N/A'
+                        "NoResponse": "1",
+                        "user_key": None
                     })
-
 
                 def emptyrtrecord():
                     date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

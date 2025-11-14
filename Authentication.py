@@ -1,7 +1,11 @@
 import tkinter as tk
 import hashlib, time
 from tkinter import ttk, messagebox
-import subprocess, pkg_resources, threading
+import subprocess
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])
+
+import pkg_resources, threading
 
 text = "1234"
 passw = hashlib.sha256(text.encode())

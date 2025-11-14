@@ -1,9 +1,11 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
 
+host = '8mews.ddns.net'
+
 import tkinter as tk
 from tkinter import messagebox
-import hashlib
+import hashlib, requests
 from pathlib import Path
 
 def check_password(event=None):
@@ -422,33 +424,76 @@ def introduction():
                 name = "N-Back" if nb else ""
         
                 def emptyscorerecord():
+                    date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     with db_connection:
                         db_cursor.execute(
                             "INSERT INTO Scores (timestamp, participant_number, counter, score, task_type, NoResponse) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, "0", name, "No Response")
                         )
-                        
+                    requests.post(f'http://{host}:5000/scores', json={
+                        "timestamp": date_time_string,
+                        "participant_number": participant_number,
+                        "counter": count,
+                        "score": '0',
+                        "task_type": "2-back",
+                        "NoResponse": "0",
+                        "user_key": 'N/A'
+                    })
+
+
                 def emptyrtrecord():
+                    date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     with db_connection:
                         db_cursor.execute(
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, NoResponse) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, "0", name, "No Response")
                         )
+                    requests.post(f'http://{host}:5000/reaction_times', json={
+                        "timestamp": date_time_string,
+                        "participant_number": participant_number,
+                        "counter": count,
+                        "reaction_time": '0',
+                        "task_type": name,
+                        "NoResponse": "0",
+                        "user_key": 'N/A'
+                    })
+
 
                 def scorerecord():
+                    date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     with db_connection:
                         db_cursor.execute(
                             "INSERT INTO Scores (timestamp, participant_number, counter, score, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, score, name, key_name)
+                        )
+                    requests.post(f'http://{host}:5000/scores', json={
+                        "timestamp": date_time_string,
+                        "participant_number": participant_number,
+                        "counter": count,
+                        "score": score,
+                        "task_type": name,
+                        "NoResponse": "0",
+                        "user_key": key_name
+                    })
 
 
-                            )
                 def rtrecord():
+                    date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     with db_connection:
                         db_cursor.execute(
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, reactiontime, name, key_name)
-                            )
+                        )
+                    requests.post(f'http://{host}:5000/reaction_times', json={
+                        "timestamp": date_time_string,
+                        "participant_number": participant_number,
+                        "counter": count,
+                        "reaction_time": reactiontime,
+                        "task_type": name,
+                        "NoResponse": "0",
+                        "user_key": key_name
+                    })
+                                        
                 save_locally(participant_number, reactiontime, score)
 
                 nb = None

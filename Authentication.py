@@ -2,6 +2,7 @@ import tkinter as tk
 import hashlib, time
 from tkinter import ttk, messagebox
 import subprocess
+import sys
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])
 

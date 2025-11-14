@@ -430,7 +430,7 @@ def introduction():
                             "INSERT INTO Scores (timestamp, participant_number, counter, score, task_type, NoResponse) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, "0", name, "No Response")
                         )
-                    requests.post(f'http://{host}:5000/scores', json={
+                    requests.post(f'http://{host}:3312/scores', json={
                         "timestamp": date_time_string,
                         "participant_number": participant_number,
                         "counter": count,
@@ -448,7 +448,7 @@ def introduction():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, NoResponse) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, "0", name, "No Response")
                         )
-                    requests.post(f'http://{host}:5000/reaction_times', json={
+                    requests.post(f'http://{host}:3312/reaction_times', json={
                         "timestamp": date_time_string,
                         "participant_number": participant_number,
                         "counter": count,
@@ -458,7 +458,6 @@ def introduction():
                         "user_key": 'N/A'
                     })
 
-
                 def scorerecord():
                     date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     with db_connection:
@@ -466,7 +465,7 @@ def introduction():
                             "INSERT INTO Scores (timestamp, participant_number, counter, score, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, score, name, key_name)
                         )
-                    requests.post(f'http://{host}:5000/scores', json={
+                    requests.post(f'http://{host}:3312/scores', json={
                         "timestamp": date_time_string,
                         "participant_number": participant_number,
                         "counter": count,
@@ -476,7 +475,6 @@ def introduction():
                         "user_key": key_name
                     })
 
-
                 def rtrecord():
                     date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     with db_connection:
@@ -484,7 +482,7 @@ def introduction():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, reactiontime, name, key_name)
                         )
-                    requests.post(f'http://{host}:5000/reaction_times', json={
+                    requests.post(f'http://{host}:3312/reaction_times', json={
                         "timestamp": date_time_string,
                         "participant_number": participant_number,
                         "counter": count,

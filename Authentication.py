@@ -5,6 +5,7 @@ import subprocess
 import sys
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])
+subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
 
 import pkg_resources, threading
 

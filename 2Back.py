@@ -38,7 +38,7 @@ frame = tk.Frame(root, bg="white")
 frame.pack(expand=True, fill="both")
 
 tk.Label(frame, text="Enter Participant Number:", bg="white", fg="#333", font=("Arial", 14)).pack(pady=20)
-entry = tk.Entry(frame, show="*", font=("Arial", 14), justify="center")
+entry = tk.Entry(frame, font=("Arial", 14), justify="center")
 entry.pack(pady=10)
 entry.focus()
 

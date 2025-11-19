@@ -309,7 +309,7 @@ def task():
             time.sleep(1)
 
     def draw_text(text, position, color):
-        text_surface = nbfont.render(text, True, color)
+        text_surface = nbsize.render(text, True, color)
         text_rect = text_surface.get_rect(center=position)
         screen.blit(text_surface, text_rect)
 

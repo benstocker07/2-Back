@@ -268,28 +268,6 @@ now = datetime.now()
 date_time_string = now.strftime("%d-%m-%y")
 outputtime = now.strftime("%H:%M:%S")
 
-pygame.init()
-
-SCREEN_WIDTH, SCREEN_HEIGHT = (
-    pygame.display.Info().current_w,
-    pygame.display.Info().current_h,
-)
-
-WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
-screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
-pygame.display.set_caption("N-Back")
-
-pygame.font.init()
-FONT_SIZE = 240
-font = pygame.font.SysFont('Arial', FONT_SIZE)
-
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-
-KEY_MAPPING = {
-    pygame.K_j: True,
-    pygame.K_f: False
-}
 
 def generate_sequence(length):
     return [random.randint(0, 9) for _ in range(length)]
@@ -315,7 +293,32 @@ nb = None
 
 def task():
 
+    
+    pygame.init()
+
+    SCREEN_WIDTH, SCREEN_HEIGHT = (
+        pygame.display.Info().current_w,
+        pygame.display.Info().current_h,
+    )
+
+    WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
+    screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+    pygame.display.set_caption("N-Back")
+
+    pygame.font.init()
+    FONT_SIZE = 240
+    font = pygame.font.SysFont('Arial', FONT_SIZE)
+
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+
+    KEY_MAPPING = {
+        pygame.K_j: True,
+        pygame.K_f: False
+    }
+
     skip = None
+    
     pygame.font.init()
 
     pygame.event.pump()

@@ -8,6 +8,71 @@ from tkinter import messagebox
 import hashlib, requests
 from pathlib import Path
 
+def BAC():
+
+    def submit_bac(event=None):
+        entered = entry.get().strip()
+        if not entered:
+            messagebox.showerror("Error", "Please enter a BAC level.")
+            return
+        show_confirmation(entered)
+
+    def show_confirmation(value):
+        for widget in frame.winfo_children():
+            widget.destroy()
+
+        tk.Label(frame, text=f"You entered: {value}", bg="white", fg="#333", font=("Arial", 14)).pack(pady=20)
+
+        tick_var = tk.IntVar()
+        tk.Checkbutton(frame, text="Confirm this is correct", variable=tick_var, bg="white", font=("Arial", 12)).pack(pady=10)
+
+        def confirm():
+            if tick_var.get():
+                root.destroy()
+                print(f"BAC Recorded as {value}")
+            else:
+                messagebox.showwarning("Confirmation Needed", "Please tick the box to confirm.")
+
+        def reenter():
+            for widget in frame.winfo_children():
+                widget.destroy()
+            show_entry()
+
+        tk.Button(frame, text="Confirm", command=confirm, bg="#4caf50", fg="white", font=("Arial", 12, "bold")).pack(pady=5)
+        tk.Button(frame, text="Re-enter", command=reenter, bg="#f44336", fg="white", font=("Arial", 12, "bold")).pack(pady=5)
+
+    def show_entry():
+        tk.Label(frame, text="Enter BAC Level:", bg="white", fg="#333", font=("Arial", 14)).pack(pady=20)
+        global entry
+        entry = tk.Entry(frame, font=("Arial", 14), justify="center")
+        entry.pack(pady=10)
+        entry.focus()
+        tk.Button(frame, text="Submit", command=submit_bac, bg="#4caf50", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
+        root.bind("<Return>", submit_bac)
+
+    def on_closing():
+        messagebox.showwarning("Action Denied", "You must login to access the task")
+
+    root = tk.Tk()
+    root.title("BAC Entry")
+    root.configure(bg="white")
+
+    window_width = 400
+    window_height = 200
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    x = (screen_width - window_width) // 2
+    y = (screen_height - window_height) // 2
+    root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
+    frame = tk.Frame(root, bg="white")
+    frame.pack(expand=True, fill="both")
+
+    show_entry()
+
+    root.protocol("WM_DELETE_WINDOW", on_closing)
+    root.mainloop()
+
 def check_password(event=None):
     global entered
     entered = entry.get()
@@ -92,6 +157,8 @@ count += 1
 
 with open(count_file, 'w') as f:
     f.write(str(count))
+
+BAC()
 
 def login():
     global participant_number

@@ -318,6 +318,8 @@ def task():
     skip = None
     pygame.font.init()
 
+    pygame.event.pump()
+
     os.environ["SDL_VIDEO_CENTERED"] = "1"
 
     font = pygame.font.Font(None, 32)
@@ -729,7 +731,7 @@ def introduction():
             current_page += 1
             show_page(current_page)
         else:
-            root.quit()
+            root.destroy()
             pygame.display.init()
             task()
 

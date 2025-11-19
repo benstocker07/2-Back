@@ -730,16 +730,12 @@ def introduction():
             show_page(current_page)
         else:
             root.destroy()
-            load_next_part()
 
     def prev_page():
         nonlocal current_page
         if current_page > 0:
             current_page -= 1
             show_page(current_page)
-
-    def load_next_part():
-        task()
 
     nav_frame = tk.Frame(root, bg=root.cget('bg'))
     nav_frame.pack(side="bottom", fill="x", pady=20, padx=20)
@@ -756,4 +752,5 @@ def introduction():
     root.mainloop()
 
 introduction()
+task()
 BAC()

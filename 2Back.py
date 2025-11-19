@@ -268,7 +268,12 @@ now = datetime.now()
 date_time_string = now.strftime("%d-%m-%y")
 outputtime = now.strftime("%H:%M:%S")
 
+FONT_SIZE = 240
+font = pygame.font.SysFont('Arial', FONT_SIZE)
 
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+    
 def generate_sequence(length):
     return [random.randint(0, 9) for _ in range(length)]
 
@@ -306,11 +311,6 @@ def task():
     pygame.display.set_caption("N-Back")
 
     pygame.font.init()
-    FONT_SIZE = 240
-    font = pygame.font.SysFont('Arial', FONT_SIZE)
-
-    WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
 
     KEY_MAPPING = {
         pygame.K_j: True,

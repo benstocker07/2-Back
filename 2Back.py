@@ -265,6 +265,8 @@ db_cursor.execute('''
 
 now = datetime.now()
 
+pygame.font.init()
+
 date_time_string = now.strftime("%d-%m-%y")
 outputtime = now.strftime("%H:%M:%S")
 
@@ -297,8 +299,7 @@ global nb
 nb = None
 
 def task():
-
-    
+ 
     pygame.init()
 
     SCREEN_WIDTH, SCREEN_HEIGHT = (
@@ -310,7 +311,7 @@ def task():
     screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
     pygame.display.set_caption("N-Back")
 
-    pygame.font.init()
+    
 
     KEY_MAPPING = {
         pygame.K_j: True,

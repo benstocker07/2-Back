@@ -12,7 +12,6 @@ response = requests.get(url)
 
 if response.status_code == 200:
     numbers = response.text.split(", ")
-    print("All numbers:", numbers)
 else:
     print("Error:", response.status_code, response.text)
 
@@ -20,13 +19,26 @@ global ResearcherKey
 
 RID = None
 
-ResearcherKey = f'UoP_Researcher_{RID}'
-
 def check_password(event=None):
     entered = entry.get()
    
     if entered in numbers:
         RID = entered
+        ResearcherKey = f'UoP_Researcher_{RID}'
+        URL = "http://8mews.ddns.net:3312/users/idcode" 
+
+        payload = {
+            "IDCode": ResearcherKey
+        }
+
+        headers = {
+            "X-API-Key": ResearcherKey
+        }
+
+        response = requests.post(URL, json=payload, headers=headers)
+
+        print("Status:", response.status_code)
+        print("Response:", response.text)
         root.destroy()
     else:
         messagebox.showerror("Access Denied", "Incorrect password.")

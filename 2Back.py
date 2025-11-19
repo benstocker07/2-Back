@@ -730,6 +730,8 @@ def introduction():
             show_page(current_page)
         else:
             root.destroy()
+            pygame.display.init()
+            task()
 
     def prev_page():
         nonlocal current_page
@@ -752,5 +754,4 @@ def introduction():
     root.mainloop()
 
 introduction()
-task()
 BAC()

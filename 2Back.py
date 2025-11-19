@@ -672,6 +672,7 @@ def introduction():
     ]
 
     styles = [
+        {"INSTRUCTIONS NEED REPOSITIONING!!": {"foreground": "red", "font": ("Arial", 24, "bold")}},
         {"2-Back": {"foreground": "red", "font": ("Arial", 24, "bold")}},
         {"2-Back": {"foreground": "red", "font": ("Arial", 24, "bold")},
          "7": {"foreground": "blue", "font": ("Arial", 24, "bold")}},

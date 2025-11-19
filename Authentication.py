@@ -9,17 +9,12 @@ subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip
 
 import pkg_resources, threading
 
-text = "1234"
-passw = hashlib.sha256(text.encode())
-
-hash_hex = passw.hexdigest()
-
-RESEARCHER_PASSWORD_HASH = hash_hex
+text = ["1234"]
 
 def check_password(event=None):
     entered = entry.get()
-    entered_hash = hashlib.sha256(entered.encode()).hexdigest()
-    if entered_hash == RESEARCHER_PASSWORD_HASH:
+    
+    if entered in text:
         root.destroy()
     else:
         messagebox.showerror("Access Denied", "Incorrect password.")
@@ -43,7 +38,7 @@ root.geometry(f"{window_width}x{window_height}+{x}+{y}")
 frame = tk.Frame(root, bg="white")
 frame.pack(expand=True, fill="both")
 
-tk.Label(frame, text="Enter Researcher Password:", bg="white", fg="#333", font=("Arial", 14)).pack(pady=20)
+tk.Label(frame, text="Enter Researcher Key:", bg="white", fg="#333", font=("Arial", 14)).pack(pady=20)
 entry = tk.Entry(frame, show="*", font=("Arial", 14), justify="center")
 entry.pack(pady=10)
 entry.focus()

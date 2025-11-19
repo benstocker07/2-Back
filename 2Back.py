@@ -263,6 +263,15 @@ db_cursor.execute('''
     )
 ''')
 
+SCREEN_WIDTH, SCREEN_HEIGHT = (
+    pygame.display.Info().current_w,
+    pygame.display.Info().current_h,
+)
+
+WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
+screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+pygame.display.set_caption("N-Back")
+
 now = datetime.now()
 
 pygame.font.init()
@@ -300,18 +309,7 @@ nb = None
 
 def task():
  
-    pygame.init()
-
-    SCREEN_WIDTH, SCREEN_HEIGHT = (
-        pygame.display.Info().current_w,
-        pygame.display.Info().current_h,
-    )
-
-    WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
-    screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
-    pygame.display.set_caption("N-Back")
-
-    
+    pygame.init()    
 
     KEY_MAPPING = {
         pygame.K_j: True,

@@ -51,7 +51,7 @@ def BAC():
         root.bind("<Return>", submit_bac)
 
     def on_closing():
-        messagebox.showwarning("Action Denied", "You must login to access the task")
+        messagebox.showwarning("BAC Required", "You must provide a BAC measurement.")
 
     root = tk.Tk()
     root.title("BAC Entry")

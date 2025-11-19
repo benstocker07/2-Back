@@ -1,20 +1,32 @@
 import tkinter as tk
-import hashlib, time
 from tkinter import ttk, messagebox
-import subprocess
-import sys
+import subprocess, sys, requests, hashlib, time
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
 
 import pkg_resources, threading
 
-text = ["1234"]
+url = "http://8mews.ddns.net:3312/numbers"
+response = requests.get(url)
+
+if response.status_code == 200:
+    numbers = response.text.split(", ")
+    print("All numbers:", numbers)
+else:
+    print("Error:", response.status_code, response.text)
+
+global ResearcherKey
+
+RID = None
+
+ResearcherKey = f'UoP_Researcher_{RID}'
 
 def check_password(event=None):
     entered = entry.get()
-    
-    if entered in text:
+   
+    if entered in numbers:
+        RID = entered
         root.destroy()
     else:
         messagebox.showerror("Access Denied", "Incorrect password.")
@@ -22,6 +34,7 @@ def check_password(event=None):
 
 def on_closing():
     messagebox.showwarning("Action Denied", "You must login to access the task")
+    
 root = tk.Tk()
 root.iconbitmap(default="")
 root.title("Password Entry")

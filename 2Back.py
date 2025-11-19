@@ -263,53 +263,55 @@ db_cursor.execute('''
     )
 ''')
 
-SCREEN_WIDTH, SCREEN_HEIGHT = (
-    pygame.display.Info().current_w,
-    pygame.display.Info().current_h,
-)
-
-WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
-screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
-pygame.display.set_caption("N-Back")
-
-now = datetime.now()
-
-pygame.font.init()
-
-date_time_string = now.strftime("%d-%m-%y")
-outputtime = now.strftime("%H:%M:%S")
-
-FONT_SIZE = 240
-font = pygame.font.SysFont('Arial', FONT_SIZE)
-
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-    
-def generate_sequence(length):
-    return [random.randint(0, 9) for _ in range(length)]
-
-def play_n_back(n, length):
-    sequence = generate_sequence(length)
-    
-    for i in range(n, length):
-        if sequence[i] == sequence[i - n]:
-            print(f"Match! Current digit is {sequence[i]}")
-        else:
-            print(f"No match. Current digit is {sequence[i]}")
-        time.sleep(1)
-
-def draw_text(text, position, color):
-    text_surface = font.render(text, True, color)
-    text_rect = text_surface.get_rect(center=position)
-    screen.blit(text_surface, text_rect)
-
 global nb
 
 nb = None
 
 def task():
  
-    pygame.init()    
+    pygame.init()
+
+    pygame.init()
+
+    SCREEN_WIDTH, SCREEN_HEIGHT = (
+        pygame.display.Info().current_w,
+        pygame.display.Info().current_h,
+    )
+
+    WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
+    screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+    pygame.display.set_caption("N-Back")
+
+    now = datetime.now()
+
+    pygame.font.init()
+
+    date_time_string = now.strftime("%d-%m-%y")
+    outputtime = now.strftime("%H:%M:%S")
+
+    FONT_SIZE = 240
+    nbsize = pygame.font.SysFont('Arial', FONT_SIZE)
+
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+        
+    def generate_sequence(length):
+        return [random.randint(0, 9) for _ in range(length)]
+
+    def play_n_back(n, length):
+        sequence = generate_sequence(length)
+        
+        for i in range(n, length):
+            if sequence[i] == sequence[i - n]:
+                print(f"Match! Current digit is {sequence[i]}")
+            else:
+                print(f"No match. Current digit is {sequence[i]}")
+            time.sleep(1)
+
+    def draw_text(text, position, color):
+        text_surface = nbfont.render(text, True, color)
+        text_rect = text_surface.get_rect(center=position)
+        screen.blit(text_surface, text_rect)
 
     KEY_MAPPING = {
         pygame.K_j: True,

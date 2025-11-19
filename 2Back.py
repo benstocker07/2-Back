@@ -501,15 +501,21 @@ def task():
                             "INSERT INTO Scores (timestamp, participant_number, counter, score, task_type, NoResponse) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, "0", name, "No Response")
                         )
-                    requests.post(f'http://{host}:3312/scores', json={
-                        "timestamp": date_time_string,
-                        "participant_number": participant_number,
-                        "counter": count,
-                        "score": '0',
-                        "task_type": "2-back",
-                        "NoResponse": "1",
-                        "user_key": None
-                    })
+                    requests.post(
+                        f'http://{host}:3312/scores',
+                        json={
+                            "timestamp": date_time_string,
+                            "participant_number": participant_number,
+                            "counter": count,
+                            "score": '0',
+                            "task_type": "2-back",
+                            "NoResponse": "1",
+                            "user_key": None
+                        },
+                        headers={
+                            "X-API-Key": f"UoP_Researcher_1234"
+                        }
+                    )
 
                 def emptyrtrecord():
                     date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -518,15 +524,21 @@ def task():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, NoResponse) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, "0", name, "No Response")
                         )
-                    requests.post(f'http://{host}:3312/reaction_times', json={
-                        "timestamp": date_time_string,
-                        "participant_number": participant_number,
-                        "counter": count,
-                        "reaction_time": '0',
-                        "task_type": name,
-                        "NoResponse": "0",
-                        "user_key": 'N/A'
-                    })
+                    requests.post(
+                        f'http://{host}:3312/reaction_times',
+                        json={
+                            "timestamp": date_time_string,
+                            "participant_number": participant_number,
+                            "counter": count,
+                            "reaction_time": '0',
+                            "task_type": name,
+                            "NoResponse": "0",
+                            "user_key": 'N/A'
+                        },
+                        headers={
+                            "X-API-Key": "UoP_Researcher_1234"
+                        }
+                    )
 
                 def scorerecord():
                     date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -536,15 +548,21 @@ def task():
                             "INSERT INTO Scores (timestamp, participant_number, counter, score, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, score, name, key_name)
                         )
-                    requests.post(f'http://{host}:3312/scores', json={
-                        "timestamp": date_time_string,
-                        "participant_number": participant_number,
-                        "counter": count,
-                        "score": score,
-                        "task_type": name,
-                        "NoResponse": "0",
-                        "user_key": key_name
-                    })
+                    requests.post(
+                        f'http://{host}:3312/scores',
+                        json={
+                            "timestamp": date_time_string,
+                            "participant_number": participant_number,
+                            "counter": count,
+                            "score": score,
+                            "task_type": name,
+                            "NoResponse": "0",
+                            "user_key": key_name
+                        },
+                        headers={
+                            "X-API-Key": "UoP_Researcher_1234"
+                        }
+                    )
 
                 def rtrecord():
                     date_time_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -553,15 +571,21 @@ def task():
                             "INSERT INTO ReactionTimes (timestamp, participant_number, counter, reaction_time, task_type, key) VALUES (?, ?, ?, ?, ?, ?)",
                             (date_time_string, participant_number, count, reactiontime, name, key_name)
                         )
-                    requests.post(f'http://{host}:3312/reaction_times', json={
-                        "timestamp": date_time_string,
-                        "participant_number": participant_number,
-                        "counter": count,
-                        "reaction_time": reactiontime,
-                        "task_type": name,
-                        "NoResponse": "0",
-                        "user_key": key_name
-                    })
+                    requests.post(
+                        f'http://{host}:3312/reaction_times',
+                        json={
+                            "timestamp": date_time_string,
+                            "participant_number": participant_number,
+                            "counter": count,
+                            "reaction_time": reactiontime,
+                            "task_type": name,
+                            "NoResponse": "0",
+                            "user_key": key_name
+                        },
+                        headers={
+                            "X-API-Key": "UoP_Researcher_1234" 
+                        }
+                    )
                                         
                 save_locally(participant_number, reactiontime, score)
 

@@ -666,9 +666,9 @@ def introduction():
     frame.pack(expand=True, fill="both")
 
     pages = [
-        "INSTRUCTIONS NEED REPOSITIONING!!\n\n\n\n\n\nWelcome! This task is called the 2-Back.\n\n\n\nYou will be presented with a series of numbers.\n\n\n\nYou must decide if the current number is the same as the number seen two digits ago.",
-        "An example is as follows:\n\n7    4    7\n\n\n\nThis would be classed as a 2-Back since the third digit 7 is the same as that two digits ago\n\n\n\nIf the series was\n\n\n\n7    4    8\n\n\n\nThis would not be a 2-Back.",
-        "If you see a 2-Back, you must press 'J'.\n\n\n\nIf it is not a 2-Back, press 'F'.\n\n\n\nYou must respond on every trial.\n\n\n\nPress 'Next' when you are ready, then the task will begin."
+        "\n\nINSTRUCTIONS NEED REPOSITIONING!!\n\n\n\n\n\nWelcome! This task is called the 2-Back.\n\n\n\nYou will be presented with a series of numbers.\n\n\n\nYou must decide if the current number is the same as the number seen two digits ago.",
+        "\n\nINSTRUCTIONS NEED REPOSITIONING!!\n\n\n\n\n\nAn example is as follows:\n\n7    4    7\n\n\n\nThis would be classed as a 2-Back since the third digit 7 is the same as that two digits ago\n\n\n\nIf the series was\n\n\n\n7    4    8\n\n\n\nThis would not be a 2-Back.",
+        "\n\nINSTRUCTIONS NEED REPOSITIONING!!\n\n\n\n\n\nIf you see a 2-Back, you must press 'J'.\n\n\n\nIf it is not a 2-Back, press 'F'.\n\n\n\nYou must respond on every trial.\n\n\n\nPress 'Next' when you are ready, then the task will begin."
     ]
 
     styles = [

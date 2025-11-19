@@ -513,7 +513,7 @@ def task():
                             "user_key": None
                         },
                         headers={
-                            "X-API-Key": f"UoP_Researcher_1234"
+                            "X-API-Key": ResearcherKey
                         }
                     )
 
@@ -536,7 +536,7 @@ def task():
                             "user_key": 'N/A'
                         },
                         headers={
-                            "X-API-Key": "UoP_Researcher_1234"
+                            "X-API-Key": ResearcherKey
                         }
                     )
 
@@ -560,7 +560,7 @@ def task():
                             "user_key": key_name
                         },
                         headers={
-                            "X-API-Key": "UoP_Researcher_1234"
+                            "X-API-Key": ResearcherKey
                         }
                     )
 
@@ -583,7 +583,7 @@ def task():
                             "user_key": key_name
                         },
                         headers={
-                            "X-API-Key": "UoP_Researcher_1234" 
+                            "X-API-Key": ResearcherKey 
                         }
                     )
                                         

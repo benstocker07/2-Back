@@ -66,7 +66,6 @@ import sqlite3
 import numpy as np
 import json
 import threading
-import os
 from datetime import datetime
 
 def display_license():
@@ -591,16 +590,18 @@ def task():
         
     pygame.quit()     
     
+import tkinter as tk
+
 def introduction():
     root = tk.Tk()
     root.title("Instruction Window")
     root.attributes('-fullscreen', True)
 
-    frame = tk.Frame(root)
+    frame = tk.Frame(root, bg=root.cget('bg'))
     frame.pack(expand=True, fill="both")
 
     pages = [
-        "Welcome! This task is called the 2-Back.\n\nYou will be presented with a series of numbers.\n\nYou must decide if the current number is the same as the number seen two digits ago.",
+        "\n\n\n\n\n\n\n\n\n\nWelcome! This task is called the 2-Back.\n\n\n\nYou will be presented with a series of numbers.\n\n\n\nYou must decide if the current number is the same as the number seen two digits ago.",
         "An example is as follows:\n\n7    4    7\n\nThis would be classed as a 2-Back since the third digit 7 is the same as that two digits ago\n\nIf the series was\n\n7    4    8\n\nThis would not be a 2-Back.",
         "If you see a 2-Back, you must press 'J'.\n\nIf it is not a 2-Back, press 'F'.\n\nYou must respond on every trial.\n\nPress 'Next' when you are ready, then the task will begin."
     ]
@@ -616,14 +617,22 @@ def introduction():
 
     current_page = 0
 
-    text_widget = tk.Text(frame, font=("Arial", 24), wrap="word")
-    text_widget.pack(expand=True, fill="both")
+    text_widget = tk.Text(
+        frame,
+        font=("Arial", 30),
+        wrap="word",
+        bd=0,
+        highlightthickness=0,
+        bg=root.cget('bg')
+    )
+    text_widget.pack(expand=True, fill="both", padx=50)
+    text_widget.tag_configure("center", justify="center")
     text_widget.configure(state="disabled")
 
     def show_page(page_index):
         text_widget.configure(state="normal")
         text_widget.delete("1.0", tk.END)
-        text_widget.insert(tk.END, pages[page_index])
+        text_widget.insert(tk.END, pages[page_index], "center")
         for word, opts in styles[page_index].items():
             start_index = "1.0"
             while True:
@@ -654,7 +663,7 @@ def introduction():
     def load_next_part():
         task()
 
-    nav_frame = tk.Frame(root)
+    nav_frame = tk.Frame(root, bg=root.cget('bg'))
     nav_frame.pack(side="bottom", fill="x", pady=20, padx=20)
 
     back_button = tk.Button(nav_frame, text="Back", command=prev_page, font=("Arial", 18))

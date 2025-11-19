@@ -64,7 +64,7 @@ def update_status(message, percent_value):
 
 def installation_and_joystick_check():
     packages_to_install = [
-        "pygame", "pandas", "pymysql", "statsmodels",
+        "pygame", "pandas", "pymysql",
         "seaborn", "numpy", "scipy", "setuptools"
     ]
 

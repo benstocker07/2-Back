@@ -591,10 +591,6 @@ def task():
         
     pygame.quit()     
     
-task()
-
-import tkinter as tk
-
 def introduction():
     root = tk.Tk()
     root.title("Instruction Window")

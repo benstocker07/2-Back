@@ -248,7 +248,7 @@ global nb
 
 nb = None
 
-def introduction():
+def task():
 
     skip = None
     pygame.font.init()
@@ -591,4 +591,57 @@ def introduction():
         
     pygame.quit()     
     
+task()
+
+def introduction():
+
+    root = tk.Tk()
+    root.title("Instruction Window")
+    root.attributes('-fullscreen', True)
+
+    frame = tk.Frame(root)
+    frame.pack(expand=True, fill="both")
+
+    pages = [
+        "Welcome! This task is called the 2-Back.\n\n\n\nYou will be presented with a series of numbers.\n\n\n\n You must decide if the current number is the same as the number seen two digits ago.",
+        "An example is as follows:\n\n\n\n7    4    7\n\n\n\nThis would be classed as a 2-Back since the third digit 7 is the same as that two digits ago\n\n\n\n\n\nIf the series was\n\n\n\n7    4    8\n\n\n\nThis would not be a 2-Back.",
+        "If you see a 2-Back, you must press 'J'.\n\n\n\nIf it is not a 2-Back, press 'F'.\n\n\n\nYou must respond on every trial.\n\n\n\nPress 'Next' when you are ready, then the task will begin."
+    ]
+
+    current_page = 0
+
+    text_label = tk.Label(frame, text=pages[current_page], font=("Arial", 24), justify="center")
+    text_label.pack(expand=True)
+
+    def next_page():
+        global current_page
+        if current_page < len(pages) - 1:
+            current_page += 1
+            text_label.config(text=pages[current_page])
+        else:
+            root.destroy()
+            load_next_part()
+
+    def prev_page():
+        global current_page
+        if current_page > 0:
+            current_page -= 1
+            text_label.config(text=pages[current_page])
+
+    def load_next_part():
+        task()
+
+    nav_frame = tk.Frame(root)
+    nav_frame.pack(side="bottom", fill="x", pady=20, padx=20)
+
+    back_button = tk.Button(nav_frame, text="Back", command=prev_page, font=("Arial", 18))
+    back_button.pack(side="left")
+
+    next_button = tk.Button(nav_frame, text="Next", command=next_page, font=("Arial", 18))
+    next_button.pack(side="right")
+
+    root.bind("<Escape>", lambda e: root.destroy())
+
+    root.mainloop()
+
 introduction()

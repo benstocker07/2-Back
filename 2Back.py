@@ -593,8 +593,9 @@ def task():
     
 task()
 
-def introduction():
+import tkinter as tk
 
+def introduction():
     root = tk.Tk()
     root.title("Instruction Window")
     root.attributes('-fullscreen', True)
@@ -603,30 +604,56 @@ def introduction():
     frame.pack(expand=True, fill="both")
 
     pages = [
-        "Welcome! This task is called the 2-Back.\n\n\n\nYou will be presented with a series of numbers.\n\n\n\n You must decide if the current number is the same as the number seen two digits ago.",
-        "An example is as follows:\n\n\n\n7    4    7\n\n\n\nThis would be classed as a 2-Back since the third digit 7 is the same as that two digits ago\n\n\n\n\n\nIf the series was\n\n\n\n7    4    8\n\n\n\nThis would not be a 2-Back.",
-        "If you see a 2-Back, you must press 'J'.\n\n\n\nIf it is not a 2-Back, press 'F'.\n\n\n\nYou must respond on every trial.\n\n\n\nPress 'Next' when you are ready, then the task will begin."
+        "Welcome! This task is called the 2-Back.\n\nYou will be presented with a series of numbers.\n\nYou must decide if the current number is the same as the number seen two digits ago.",
+        "An example is as follows:\n\n7    4    7\n\nThis would be classed as a 2-Back since the third digit 7 is the same as that two digits ago\n\nIf the series was\n\n7    4    8\n\nThis would not be a 2-Back.",
+        "If you see a 2-Back, you must press 'J'.\n\nIf it is not a 2-Back, press 'F'.\n\nYou must respond on every trial.\n\nPress 'Next' when you are ready, then the task will begin."
+    ]
+
+    styles = [
+        {"2-Back": {"foreground": "red", "font": ("Arial", 24, "bold")}},
+        {"2-Back": {"foreground": "red", "font": ("Arial", 24, "bold")},
+         "7": {"foreground": "blue", "font": ("Arial", 24, "bold")}},
+        {"2-Back": {"foreground": "red", "font": ("Arial", 24, "bold")},
+         "J": {"foreground": "green", "font": ("Arial", 24, "bold")},
+         "F": {"foreground": "green", "font": ("Arial", 24, "bold")}}
     ]
 
     current_page = 0
 
-    text_label = tk.Label(frame, text=pages[current_page], font=("Arial", 24), justify="center")
-    text_label.pack(expand=True)
+    text_widget = tk.Text(frame, font=("Arial", 24), wrap="word")
+    text_widget.pack(expand=True, fill="both")
+    text_widget.configure(state="disabled")
+
+    def show_page(page_index):
+        text_widget.configure(state="normal")
+        text_widget.delete("1.0", tk.END)
+        text_widget.insert(tk.END, pages[page_index])
+        for word, opts in styles[page_index].items():
+            start_index = "1.0"
+            while True:
+                pos = text_widget.search(word, start_index, stopindex=tk.END)
+                if not pos:
+                    break
+                end_pos = f"{pos}+{len(word)}c"
+                text_widget.tag_add(word, pos, end_pos)
+                text_widget.tag_config(word, **opts)
+                start_index = end_pos
+        text_widget.configure(state="disabled")
 
     def next_page():
-        global current_page
+        nonlocal current_page
         if current_page < len(pages) - 1:
             current_page += 1
-            text_label.config(text=pages[current_page])
+            show_page(current_page)
         else:
             root.destroy()
             load_next_part()
 
     def prev_page():
-        global current_page
+        nonlocal current_page
         if current_page > 0:
             current_page -= 1
-            text_label.config(text=pages[current_page])
+            show_page(current_page)
 
     def load_next_part():
         task()
@@ -642,6 +669,7 @@ def introduction():
 
     root.bind("<Escape>", lambda e: root.destroy())
 
+    show_page(current_page)
     root.mainloop()
 
 introduction()

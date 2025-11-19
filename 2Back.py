@@ -3,6 +3,12 @@
 
 host = '8mews.ddns.net'
 
+RID = '1234'
+
+global ResearcherKey
+
+ResearcherKey = f'UoP_Researcher_{RID}'
+
 import tkinter as tk
 from tkinter import messagebox
 import hashlib, requests

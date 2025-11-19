@@ -21,7 +21,7 @@ def BAC():
         for widget in frame.winfo_children():
             widget.destroy()
 
-        tk.Label(frame, text=f"You entered: {value}", bg="white", fg="#333", font=("Arial", 14)).pack(pady=20)
+        tk.Label(frame, text=f"BAC entered: {value}", bg="white", fg="#333", font=("Arial", 14)).pack(pady=20)
 
         tick_var = tk.IntVar()
         tk.Checkbutton(frame, text="Confirm this is correct", variable=tick_var, bg="white", font=("Arial", 12)).pack(pady=10)
@@ -743,3 +743,4 @@ def introduction():
     root.mainloop()
 
 introduction()
+BAC()

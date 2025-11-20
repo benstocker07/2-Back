@@ -70,9 +70,8 @@ BAC_Count = 0
 
 def BAC():
     global BAC_Count
+    
     BAC_Count += 1
-
-    print('BAC Count: ', BAC_Count)
 
     def submit_bac(event=None):
         entered = entry.get().strip()

@@ -37,8 +37,8 @@ def check_password(event=None):
 
         response = requests.post(URL, json=payload, headers=headers)
 
-        print("Status:", response.status_code)
-        print("Response:", response.text)
+        os.environ["ResearcherKey"] = ResearcherKey
+        
         root.destroy()
     else:
         messagebox.showerror("Access Denied", "Incorrect password.")

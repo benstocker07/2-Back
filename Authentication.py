@@ -3,7 +3,7 @@
 
 import tkinter as tk
 from tkinter import ttk, messagebox
-import subprocess, sys, requests, hashlib, time, os
+import subprocess, sys, requests, hashlib, time, os, socket
 from datetime import datetime
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])

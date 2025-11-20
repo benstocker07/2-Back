@@ -19,7 +19,7 @@ def send_BAC(value):
     URL = "http://8mews.ddns.net:3312/participants/start"
 
     payload = {
-        "participant_number": participant_number,
+        "participant_number": entered,
         "BAC_Start": value
     }
 

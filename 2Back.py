@@ -16,7 +16,7 @@ def show_interval_window(seconds=120):
     interval_root = tk.Tk()
     interval_root.title("Interval")
     interval_root.resizable(False, False)
-    width, height = 600, 200
+    width, height = 600, 400
 
     screen_width = interval_root.winfo_screenwidth()
     screen_height = interval_root.winfo_screenheight()
@@ -718,8 +718,10 @@ def task():
             
         current_index += 1
 
-        if current_index == sequence_length/3:
+        if current_index == sequence_length//3:
             show_interval_window(120)
+
+        if current_index == (sequence_length//3)*2:
 
         if current_index >= sequence_length:
             running = False

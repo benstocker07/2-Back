@@ -7,6 +7,9 @@ import tkinter as tk
 from tkinter import messagebox
 import hashlib, requests
 from pathlib import Path
+from Authentication import ResearcherKey
+
+print(ResearcherKey)
 
 def BAC():
 

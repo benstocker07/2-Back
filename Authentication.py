@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-import subprocess, sys, requests, hashlib, time
+import subprocess, sys, requests, hashlib, time, os
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])

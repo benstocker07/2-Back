@@ -112,6 +112,7 @@ def check_password(event=None):
         response = requests.get(url, params=params)
         if response.status_code == 200:
             data = response.json()
+            print(data)
             if data["exists"]:
                 messagebox.showerror("Error", data["message"])
                 return False

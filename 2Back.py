@@ -16,7 +16,7 @@ row_id = None
 
 def send_BAC(value):
     global row_id  
-    URL = "http://8mews.ddns.net:3312/participants/start"
+    URL = f"http://{host}:3312/participants/start"
 
     payload = {
         "participant_number": entered,
@@ -46,7 +46,7 @@ def end_BAC(value):
         print("Error: Cannot submit BAC_End before BAC_Start")
         return
 
-    URL = "http://8mews.ddns.net:3312/participants/end"
+    URL = f"http://{host}:3312/participants/end"
 
     payload = {
         "id": row_id,
@@ -146,7 +146,7 @@ def check_password(event=None):
     entered = entry.get()
 
     def check_participant_number(entered):
-        url = "http://8mews.ddns.net:3312/reaction_times/check"
+        url = f"http://{host}:3312/reaction_times/check"
         params = {"participant_number": entered}
 
         response = requests.get(url, params=params)

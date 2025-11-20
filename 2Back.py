@@ -21,7 +21,7 @@ def send_BAC(value):
     }
 
     headers = {
-        "X-API-Key": researcher_key,
+        "X-API-Key": ResearcherKey,
         "Content-Type": "application/json"
     }
 

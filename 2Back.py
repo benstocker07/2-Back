@@ -10,22 +10,35 @@ from tkinter import messagebox
 import hashlib, requests, time
 from pathlib import Path
 from Authentication import *
+from tkinter import ttk
 
 def show_interval_window(seconds=120):
     interval_root = tk.Tk()
     interval_root.title("Interval")
-    interval_root.geometry("600x200")
     interval_root.resizable(False, False)
+    width, height = 600, 200
 
-    label = tk.Label(interval_root, text="", font=("Helvetica", 24), wraplength=550, justify="center")
-    label.pack(expand=True)
+    screen_width = interval_root.winfo_screenwidth()
+    screen_height = interval_root.winfo_screenheight()
+    x = (screen_width - width) // 2
+    y = (screen_height - height) // 2
+    interval_root.geometry(f"{width}x{height}+{x}+{y}")
+
+    label = tk.Label(interval_root, text="", font=("Arial", 24), wraplength=550, justify="center")
+    label.pack(pady=20)
+
+    progress = ttk.Progressbar(interval_root, orient="horizontal", length=500, mode="determinate")
+    progress.pack(pady=10)
+    progress["maximum"] = seconds
+    progress["value"] = 0
 
     def countdown(count):
-        label.config(text=f"Thank you for your participation so far!\nTake this time to rest.\nTime remaining: {count} sec")
+        label.config(text=f"Thank you for your participation so far!\n\nTake this time to rest.\n\nTime remaining: {count} secs")
+        progress["value"] = seconds - count
         if count > 0:
             interval_root.after(1000, countdown, count-1)
         else:
-            interval_root.destroy() 
+            interval_root.destroy()
 
     countdown(seconds)
     interval_root.mainloop()
@@ -775,8 +788,8 @@ def task():
                 pygame.quit()
                 sys.exit()
 
-            if __name__ == "__main__":
-                main()
+            #if __name__ == "__main__":
+            #   main()
         
     pygame.quit()     
     

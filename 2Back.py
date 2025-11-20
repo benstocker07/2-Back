@@ -122,6 +122,7 @@ def check_password(event=None):
             return False
     
     if len(entered) > 0:
+        check_participant_number(participant_number)
         root.destroy()
         
     else:

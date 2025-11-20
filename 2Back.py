@@ -202,20 +202,15 @@ import subprocess
 import pygame, math
 import sys, shutil, ctypes
 from pygame.locals import *
-import random, time
-import os
+import random, time, os
 
 os.chdir(os.path.dirname(__file__))
 
-import csv
-import time
 import pandas as pd
 from datetime import datetime
 from scipy.stats import norm
-import sqlite3
-import numpy as np
-import json
-import threading
+import csv, sqlite3, numpy as np
+import json, threading
 from datetime import datetime
 
 def display_license():

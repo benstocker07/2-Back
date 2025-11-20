@@ -15,23 +15,25 @@ ResearcherKey = os.getenv("ResearcherKey")
 row_id = None
 
 def send_BAC(value):
-    global row_id
-    URL = "http://8mews.ddns.net:3312/participants/check"  
-    resp = requests.get(URL, params={"participant_number": entered})
-    exists_data = resp.json()
-    if exists_data["exists"]:
-        print("Participant already exists. Updating BAC_Start instead.")
-        row_id = exists_data["id"]
-        end_BAC(value, ResearcherKey) 
-        return row_id
-
+    global row_id  
     URL = "http://8mews.ddns.net:3312/participants/start"
-    payload = {"participant_number": entered, "BAC_Start": value}
-    headers = {"X-API-Key": ResearcherKey, "Content-Type": "application/json"}
+
+    payload = {
+        "participant_number": entered,
+        "BAC_Start": value
+    }
+
+    headers = {
+        "X-API-Key": ResearcherKey,
+        "Content-Type": "application/json"
+    }
+
     response = requests.post(URL, json=payload, headers=headers)
+    
     if response.status_code == 201:
         data = response.json()
-        row_id = data["id"]
+        print("Participant created:", data)
+        row_id = data["id"]  
         return row_id
     else:
         print("Error:", response.status_code, response.text)

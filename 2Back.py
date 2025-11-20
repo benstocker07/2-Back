@@ -105,9 +105,9 @@ def check_password(event=None):
     global entered
     entered = entry.get()
 
-    def check_participant_number(participant_number):
+    def check_participant_number(entered):
         url = "http://8mews.ddns.net:3312/reaction_times/check"
-        params = {"participant_number": participant_number}
+        params = {"participant_number": entered}
 
         response = requests.get(url, params=params)
         if response.status_code == 200:
@@ -122,7 +122,7 @@ def check_password(event=None):
             return False
     
     if len(entered) > 0:
-        check_participant_number(participant_number)
+        check_participant_number(entered)
         root.destroy()
         
     else:

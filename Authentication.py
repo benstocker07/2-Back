@@ -30,13 +30,13 @@ import requests
 import tkinter as tk
 from tkinter import messagebox
 
-
 def get_ip():
-    return socket.gethostbyname(socket.gethostname())
+    return requests.get("https://api.ipify.org").text
 
 
 def check_password(event=None):
     entered = entry.get()
+
    
     if entered in numbers:
         RID = entered
@@ -50,13 +50,13 @@ def check_password(event=None):
         payload = {
             "IDCode": ResearcherKey,
             "created_at": now,
-            "ip_address": ip_addr
+            "ip_address": str(ip_addr)
         }
 
         headers = {
             "X-API-Key": ResearcherKey
         }
-
+        
         response = requests.post(URL, json=payload, headers=headers)
 
         os.environ["ResearcherKey"] = ResearcherKey

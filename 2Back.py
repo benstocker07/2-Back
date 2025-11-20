@@ -14,18 +14,18 @@ from Authentication import *
 def show_interval_window(seconds=120):
     interval_root = tk.Tk()
     interval_root.title("Interval")
-    interval_root.geometry("400x200")
+    interval_root.geometry("600x200")
     interval_root.resizable(False, False)
 
-    label = tk.Label(interval_root, text="", font=("Helvetica", 48))
+    label = tk.Label(interval_root, text="", font=("Helvetica", 24), wraplength=550, justify="center")
     label.pack(expand=True)
 
     def countdown(count):
-        label.config(text="Thank you for your participation so far! Take this time to rest. ", str(count))
+        label.config(text=f"Thank you for your participation so far!\nTake this time to rest.\nTime remaining: {count} sec")
         if count > 0:
             interval_root.after(1000, countdown, count-1)
         else:
-            interval_root.destroy()  
+            interval_root.destroy() 
 
     countdown(seconds)
     interval_root.mainloop()

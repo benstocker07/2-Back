@@ -56,7 +56,7 @@ def end_BAC(value):
         print("Error:", response.status_code, response.text)
 
 
-BAC_Count == 0
+BAC_Count = None
 
 def BAC():
 

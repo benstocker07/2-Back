@@ -1,14 +1,34 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
+
 import Authentication
 
 host = '8mews.ddns.net'
 
 import tkinter as tk
 from tkinter import messagebox
-import hashlib, requests
+import hashlib, requests, time
 from pathlib import Path
 from Authentication import *
+
+def show_interval_window(seconds=120):
+    interval_root = tk.Tk()
+    interval_root.title("Interval")
+    interval_root.geometry("400x200")
+    interval_root.resizable(False, False)
+
+    label = tk.Label(interval_root, text="", font=("Helvetica", 48))
+    label.pack(expand=True)
+
+    def countdown(count):
+        label.config(text=str(count))
+        if count > 0:
+            interval_root.after(1000, countdown, count-1)
+        else:
+            interval_root.destroy()  
+
+    countdown(seconds)
+    interval_root.mainloop()
 
 ResearcherKey = os.getenv("ResearcherKey")
 
@@ -456,7 +476,7 @@ def task():
     )
 
     n = 2  
-    sequence_length = 360
+    sequence_length = 9
 
     total_trials = sequence_length + learning
     
@@ -686,14 +706,8 @@ def task():
         current_index += 1
 
         if current_index == sequence_length/3:
-            
-            for i in range(0,5):
-                timerange = [1,2,3]
-                time.sleep(1)
-                
-                if i in timerange:
-                    print(f'{i} to go')
-            
+            show_interval_window(120)
+
         if current_index >= sequence_length:
             running = False
 

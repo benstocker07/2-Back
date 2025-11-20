@@ -60,7 +60,8 @@ BAC_Count = None
 
 def BAC():
 
-    BAC_Count =+ 1
+    global BAC_Count
+    BAC_Count += 1
 
     print('BAC Count: ', BAC_Count)
 

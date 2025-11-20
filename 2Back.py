@@ -198,9 +198,7 @@ root.bind("<Return>", check_password)
 root.protocol("WM_DELETE_WINDOW", on_closing)
 root.mainloop()
 
-import subprocess
-import pygame, math
-import sys, shutil, ctypes
+import subprocess, pygame, math, sys, shutil, ctypes
 from pygame.locals import *
 import random, time, os
 

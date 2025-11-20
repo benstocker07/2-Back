@@ -35,8 +35,32 @@ def send_BAC(value):
         print("Error:", response.status_code, response.text)
         return None
 
+def end_BAC(value):
+    URL = "http://8mews.ddns.net:3312/participants/end"
+
+    payload = {
+        "id": row_id,
+        "BAC_End": BAC_End
+    }
+
+    headers = {
+        "X-API-Key": researcher_key,
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(URL, json=payload, headers=headers)
+
+    if response.status_code == 200:
+        print("BAC_End updated:", response.json())
+    else:
+        print("Error:", response.status_code, response.text)
+
+
+BAC_Count == 0
 
 def BAC():
+
+    BAC_Count =+ 1
 
     def submit_bac(event=None):
         entered = entry.get().strip()
@@ -57,7 +81,11 @@ def BAC():
         def confirm():
             if tick_var.get():
                 root.destroy()
-                send_BAC(value)
+                if BAC_Count > 0:
+                    send_BAC(value)
+
+                if BAC_Count > 1:
+                    end_BAC(value)
             else:
                 messagebox.showwarning("Confirmation Needed", "Please tick the box to confirm.")
 

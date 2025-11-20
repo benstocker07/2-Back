@@ -12,16 +12,19 @@ from Authentication import *
 
 ResearcherKey = os.getenv("ResearcherKey")
 
-def send_BAC(value):
+row_id = None
+
+def send_BAC(value, participant_number, researcher_key):
+    global row_id  
     URL = "http://8mews.ddns.net:3312/participants/start"
 
     payload = {
-        "participant_number": entered,
+        "participant_number": participant_number,
         "BAC_Start": value
     }
 
     headers = {
-        "X-API-Key": ResearcherKey,
+        "X-API-Key": researcher_key,
         "Content-Type": "application/json"
     }
 
@@ -30,17 +33,24 @@ def send_BAC(value):
     if response.status_code == 201:
         data = response.json()
         print("Participant created:", data)
-        return data["id"] 
+        row_id = data["id"]  
+        return row_id
     else:
         print("Error:", response.status_code, response.text)
         return None
 
-def end_BAC(value):
+
+def end_BAC(value, researcher_key):
+    global row_id
+    if row_id is None:
+        print("Error: Cannot submit BAC_End before BAC_Start")
+        return
+
     URL = "http://8mews.ddns.net:3312/participants/end"
 
     payload = {
         "id": row_id,
-        "BAC_End": BAC_End
+        "BAC_End": value
     }
 
     headers = {

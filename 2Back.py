@@ -12,7 +12,7 @@ from Authentication import *
 
 ResearcherKey = os.getenv("ResearcherKey")
 
-def send_BAC():
+def send_BAC(value):
     URL = "http://8mews.ddns.net:3312/participants/start"
 
     payload = {
@@ -57,7 +57,7 @@ def BAC():
         def confirm():
             if tick_var.get():
                 root.destroy()
-                send_BAC()
+                send_BAC(value)
             else:
                 messagebox.showwarning("Confirmation Needed", "Please tick the box to confirm.")
 
@@ -104,8 +104,10 @@ def BAC():
 def check_password(event=None):
     global entered
     entered = entry.get()
+    
     if len(entered) > 0:
         root.destroy()
+        
     else:
         messagebox.showerror("Participant ID Entry", "Please provide a participant number.")
         entry.delete(0, tk.END)

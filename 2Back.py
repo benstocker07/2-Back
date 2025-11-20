@@ -56,10 +56,9 @@ def end_BAC(value):
         print("Error:", response.status_code, response.text)
 
 
-BAC_Count = None
+BAC_Count = 0
 
 def BAC():
-
     global BAC_Count
     BAC_Count += 1
 

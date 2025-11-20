@@ -12,6 +12,30 @@ from Authentication import *
 
 ResearcherKey = os.getenv("ResearcherKey")
 
+def send_BAC(participant_number, BAC_Start, researcher_key):
+    URL = "http://8mews.ddns.net:3312/participants/start"
+
+    payload = {
+        "participant_number": participant_number,
+        "BAC_Start": value
+    }
+
+    headers = {
+        "X-API-Key": researcher_key,
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(URL, json=payload, headers=headers)
+    
+    if response.status_code == 201:
+        data = response.json()
+        print("Participant created:", data)
+        return data["id"] 
+    else:
+        print("Error:", response.status_code, response.text)
+        return None
+
+
 def BAC():
 
     def submit_bac(event=None):
@@ -33,7 +57,7 @@ def BAC():
         def confirm():
             if tick_var.get():
                 root.destroy()
-                print(f"BAC Recorded as {value}")
+                send_BAC()
             else:
                 messagebox.showwarning("Confirmation Needed", "Please tick the box to confirm.")
 
@@ -52,7 +76,7 @@ def BAC():
         entry.pack(pady=10)
         entry.focus()
         tk.Button(frame, text="Submit", command=submit_bac, bg="#4caf50", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
-        root.bind("<Return>", submit_bac)
+        root.bind("<Rsoeturn>", submit_bac)
 
     def on_closing():
         messagebox.showwarning("BAC Required", "You must provide a BAC measurement.")

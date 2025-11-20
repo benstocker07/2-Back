@@ -76,7 +76,7 @@ def BAC():
         entry.pack(pady=10)
         entry.focus()
         tk.Button(frame, text="Submit", command=submit_bac, bg="#4caf50", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
-        root.bind("<Rsoeturn>", submit_bac)
+        root.bind("<Return>", submit_bac)
 
     def on_closing():
         messagebox.showwarning("BAC Required", "You must provide a BAC measurement.")

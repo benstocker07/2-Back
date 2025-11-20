@@ -12,8 +12,6 @@ from Authentication import *
 
 ResearcherKey = os.getenv("ResearcherKey")
 
-print(ResearcherKey)
-
 def BAC():
 
     def submit_bac(event=None):

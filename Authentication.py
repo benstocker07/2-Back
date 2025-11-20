@@ -1,3 +1,6 @@
+# Copyright Ben Stocker, 2025
+# See LICENSE.md for terms of use and restrictions.
+
 import tkinter as tk
 from tkinter import ttk, messagebox
 import subprocess, sys, requests, hashlib, time, os

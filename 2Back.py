@@ -16,7 +16,7 @@ def show_interval_window(seconds=120):
     interval_root = tk.Tk()
     interval_root.title("Interval")
     interval_root.resizable(False, False)
-    width, height = 600, 400
+    width, height = 600, 350
 
     screen_width = interval_root.winfo_screenwidth()
     screen_height = interval_root.winfo_screenheight()

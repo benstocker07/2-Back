@@ -62,6 +62,8 @@ def BAC():
 
     BAC_Count =+ 1
 
+    print('BAC Count: ', BAC_Count)
+
     def submit_bac(event=None):
         entered = entry.get().strip()
         if not entered:

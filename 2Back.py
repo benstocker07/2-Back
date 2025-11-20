@@ -8,7 +8,9 @@ import tkinter as tk
 from tkinter import messagebox
 import hashlib, requests
 from pathlib import Path
-from Authentication import ResearcherKey
+from Authentication import *
+
+ResearcherKey = os.getenv("ResearcherKey")
 
 print(ResearcherKey)
 

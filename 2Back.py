@@ -21,7 +21,7 @@ def show_interval_window(seconds=120):
     label.pack(expand=True)
 
     def countdown(count):
-        label.config(text=str(count))
+        label.config(text="Thank you for your participation so far! Take this time to rest. ", str(count))
         if count > 0:
             interval_root.after(1000, countdown, count-1)
         else:

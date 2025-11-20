@@ -12,7 +12,7 @@ from Authentication import *
 
 ResearcherKey = os.getenv("ResearcherKey")
 
-def send_BAC(participant_number, BAC_Start, researcher_key):
+def send_BAC():
     URL = "http://8mews.ddns.net:3312/participants/start"
 
     payload = {

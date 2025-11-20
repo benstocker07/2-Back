@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import subprocess, sys, requests, hashlib, time, os
+from datetime import datetime
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
@@ -19,6 +20,18 @@ global ResearcherKey
 
 RID = None
 
+from datetime import datetime
+import os
+import socket
+import requests
+import tkinter as tk
+from tkinter import messagebox
+
+
+def get_ip():
+    return socket.gethostbyname(socket.gethostname())
+
+
 def check_password(event=None):
     entered = entry.get()
    
@@ -27,8 +40,14 @@ def check_password(event=None):
         ResearcherKey = f'UoP_Researcher_{RID}'
         URL = "http://8mews.ddns.net:3312/users/idcode" 
 
+        now = datetime.now().isoformat(sep=" ", timespec="seconds")
+
+        ip_addr = get_ip()
+
         payload = {
-            "IDCode": ResearcherKey
+            "IDCode": ResearcherKey,
+            "created_at": now,
+            "ip_address": ip_addr
         }
 
         headers = {

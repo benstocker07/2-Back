@@ -116,14 +116,14 @@ def check_password(event=None):
             if data["exists"]:
                 messagebox.showerror("Error", data["message"])
                 return False
-            return True
+            else:
+                root.destroy()
         else:
             messagebox.showerror("Error", "Could not check participant number.")
             return False
     
     if len(entered) > 0:
         check_participant_number(entered)
-        root.destroy()
         
     else:
         messagebox.showerror("Participant ID Entry", "Please provide a participant number.")

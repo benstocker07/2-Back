@@ -14,7 +14,7 @@ ResearcherKey = os.getenv("ResearcherKey")
 
 row_id = None
 
-def send_BAC(value, participant_number, researcher_key):
+def send_BAC(value):
     global row_id  
     URL = "http://8mews.ddns.net:3312/participants/start"
 
@@ -24,7 +24,7 @@ def send_BAC(value, participant_number, researcher_key):
     }
 
     headers = {
-        "X-API-Key": researcher_key,
+        "X-API-Key": ResearcherKey,
         "Content-Type": "application/json"
     }
 
@@ -40,7 +40,7 @@ def send_BAC(value, participant_number, researcher_key):
         return None
 
 
-def end_BAC(value, researcher_key):
+def end_BAC(value):
     global row_id
     if row_id is None:
         print("Error: Cannot submit BAC_End before BAC_Start")
@@ -54,7 +54,7 @@ def end_BAC(value, researcher_key):
     }
 
     headers = {
-        "X-API-Key": researcher_key,
+        "X-API-Key": ResearcherKey,
         "Content-Type": "application/json"
     }
 

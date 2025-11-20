@@ -489,7 +489,7 @@ def task():
     )
 
     n = 2  
-    sequence_length = 9
+    sequence_length = 12
 
     total_trials = sequence_length + learning
     

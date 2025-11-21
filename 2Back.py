@@ -761,7 +761,7 @@ def task():
             
             def main():
                 pygame.init()
-                width, height = 800, 600
+                width, height = 800, 400
                 screen = pygame.display.set_mode((width, height))
                 pygame.display.set_caption("Thank You")
                 WHITE = (255, 255, 255)

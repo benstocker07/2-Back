@@ -761,7 +761,7 @@ def task():
             
             def main():
                 pygame.init()
-                width, height = 800, 400
+                width, height = 800, 600
                 screen = pygame.display.set_mode((width, height))
                 pygame.display.set_caption("Thank You")
                 WHITE = (255, 255, 255)
@@ -796,6 +796,8 @@ def task():
         
     pygame.quit()     
     
+#check resolution size and adjust accordingly
+
 def introduction():
     root = tk.Tk()
     root.title("Instruction Window")
@@ -892,5 +894,6 @@ def introduction():
     show_page(current_page)
     root.mainloop()
 
-introduction()
+#introduction()
+task()
 BAC()

@@ -77,7 +77,6 @@ def check_password(event=None):
     entered = entry.get()
 
     try:
-       
         if entered in numbers:
             RID = entered
             ResearcherKey = f'UoP_Researcher_{RID}'

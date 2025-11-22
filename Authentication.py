@@ -3,21 +3,60 @@
 
 import tkinter as tk
 from tkinter import ttk, messagebox
-import subprocess, sys, requests, hashlib, time, os, socket
+import subprocess, sys, requests, hashlib, time, os, socket, pkg_resources, threading
 from datetime import datetime
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
 
-import pkg_resources, threading
-
 url = "http://8mews.ddns.net:3312/numbers"
-response = requests.get(url)
 
-if response.status_code == 200:
-    numbers = response.text.split(", ")
-else:
-    print("Error:", response.status_code, response.text)
+
+def show_offline_window():
+    global status
+    root = tk.Tk()
+    root.title("Server Offline")
+    w = 350
+    h = 150
+    sw = root.winfo_screenwidth()
+    sh = root.winfo_screenheight()
+    x = (sw - w) // 2
+    y = (sh - h) // 2
+    root.geometry(f"{w}x{h}+{x}+{y}")
+    root.resizable(False, False)
+
+    label = tk.Label(root, text="Server is offline.\n\nWhat would you like to do?", font=("Arial", 12))
+    label.pack(pady=10)
+
+    def continue_local():
+        global status
+        status = 'local'
+        root.destroy()
+
+    def close_program():
+        global status
+        root.destroy()
+        sys.exit()
+
+    btn_frame = tk.Frame(root)
+    btn_frame.pack(pady=10)
+
+    tk.Button(btn_frame, text="Continue Locally", width=15, font=("Arial", 10), command=continue_local).grid(row=0, column=0, padx=5)
+    tk.Button(btn_frame, text="Close Program", width=15, font=("Arial", 10), command=close_program).grid(row=0, column=1, padx=5)
+
+    root.mainloop()
+
+try:
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        numbers = response.text.split(", ")
+        status = 'server'
+    else:
+        print("Error:", response.status_code, response.text)
+
+except requests.exceptions.ConnectionError as e:
+    show_offline_window()
 
 global ResearcherKey
 
@@ -37,34 +76,44 @@ def get_ip():
 def check_password(event=None):
     entered = entry.get()
 
-   
-    if entered in numbers:
-        RID = entered
-        ResearcherKey = f'UoP_Researcher_{RID}'
-        URL = "http://8mews.ddns.net:3312/users/idcode" 
+    try:
+       
+        if entered in numbers:
+            RID = entered
+            ResearcherKey = f'UoP_Researcher_{RID}'
+            URL = "http://8mews.ddns.net:3312/users/idcode" 
 
-        now = datetime.now().isoformat(sep=" ", timespec="seconds")
+            now = datetime.now().isoformat(sep=" ", timespec="seconds")
 
-        ip_addr = get_ip()
+            try:
+                ip_addr = get_ip()
 
-        payload = {
-            "IDCode": ResearcherKey,
-            "created_at": now,
-            "ip_address": str(ip_addr)
-        }
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                ip_addr = None
 
-        headers = {
-            "X-API-Key": ResearcherKey
-        }
-        
-        response = requests.post(URL, json=payload, headers=headers)
+            payload = {
+                "IDCode": ResearcherKey,
+                "created_at": now,
+                "ip_address": str(ip_addr)
+            }
 
-        os.environ["ResearcherKey"] = ResearcherKey
-        
-        root.destroy()
-    else:
-        messagebox.showerror("Access Denied", "Incorrect password.")
-        entry.delete(0, tk.END)
+            headers = {
+                "X-API-Key": ResearcherKey
+            }
+            
+            if status == 'server':
+                response = requests.post(URL, json=payload, headers=headers)
+
+            os.environ["ResearcherKey"] = ResearcherKey
+            
+            root.destroy()
+        else:
+            messagebox.showerror("Access Denied", "Incorrect password.")
+            entry.delete(0, tk.END)
+
+    except NameError as e:
+        print(e)
 
 def on_closing():
     messagebox.showwarning("Action Denied", "You must login to access the task")

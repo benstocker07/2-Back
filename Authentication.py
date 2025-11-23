@@ -11,7 +11,6 @@ subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip
 
 url = "http://8mews.ddns.net:3312/numbers"
 
-
 def show_offline_window():
     global status
     root = tk.Tk()
@@ -71,7 +70,6 @@ from tkinter import messagebox
 
 def get_ip():
     return requests.get("https://api.ipify.org").text
-
 
 def check_password(event=None):
     entered = entry.get()

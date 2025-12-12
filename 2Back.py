@@ -65,7 +65,6 @@ def send_BAC(value):
     
     if response.status_code == 201:
         data = response.json()
-        print("Participant created:", data)
         row_id = data["id"]  
         return row_id
     else:

@@ -894,6 +894,6 @@ def introduction():
     show_page(current_page)
     root.mainloop()
 
-#introduction()
+introduction()
 task()
 BAC()

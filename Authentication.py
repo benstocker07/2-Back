@@ -51,6 +51,10 @@ try:
     if response.status_code == 200:
         numbers = response.text.split(", ")
         status = 'server'
+
+    if response.status_code == 502:
+        show_offline_window()
+        
     else:
         print("Error:", response.status_code, response.text)
 

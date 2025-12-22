@@ -1,7 +1,7 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
 
-import Authentication
+#import Authentication
 
 host = '8mews.ddns.net'
 
@@ -183,7 +183,6 @@ def check_password(event=None):
         response = requests.get(url, params=params)
         if response.status_code == 200:
             data = response.json()
-            print(data)
             if data["exists"]:
                 messagebox.showerror("Error", data["message"])
                 return False
@@ -476,7 +475,11 @@ def task():
     incorrectintervaldimensions = incorrectinterval.get_rect(center=screen.get_rect().center)
     def generate_sequence(length):
         
+        global nbackno
+
         nbackno = math.ceil(sequence_length / 3)
+
+        print(nbackno)
 
         sequence = [random.randint(1, 9) for _ in range(length)]
         for _ in range(nbackno):
@@ -490,12 +493,30 @@ def task():
             NBacks VAR(255),
             SequenceLength VAR(255)
         )
-    ''')
+        ''')
 
         db_cursor.execute(
         "INSERT INTO Configuration (NBacks, SequenceLength) VALUES (?, ?)",
         (nbackno, sequence_length)
-    )
+        )
+
+        url = f"http://{host}:3312/configuration"
+
+        data = {
+            "NBacks": nbackno,
+            "SequenceLength": sequence_length
+        }
+
+        headers = {
+            "X-API-Key": API_KEY
+        }
+
+        response = requests.post(url, json=data, headers=headers)
+
+        if response.status_code == 201:
+            print("Configuration saved")
+        else:
+            print(response.status_code, response.text)
 
     n = 2  
     sequence_length = 120

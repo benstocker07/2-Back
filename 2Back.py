@@ -755,8 +755,6 @@ def task():
                 print("No hits or false alarms to calculate d' and c.")
                 d_prime = 0
                 c_prime = 0
-
-            print('Task completed')
             
             def main():
                 pygame.init()

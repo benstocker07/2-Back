@@ -1,7 +1,7 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
 
-#import Authentication
+import Authentication
 
 host = '8mews.ddns.net'
 

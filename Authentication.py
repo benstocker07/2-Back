@@ -55,7 +55,6 @@ try:
     if response.status_code == 502:
         show_offline_window()
 
-
 except requests.exceptions.ConnectionError as e:
     show_offline_window()
 

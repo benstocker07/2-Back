@@ -381,8 +381,8 @@ nb = None
 def task():
  
     pygame.init()
+    info = pygame.display.Info()
 
-    pygame.init()
 
     SCREEN_WIDTH, SCREEN_HEIGHT = (
         pygame.display.Info().current_w,
@@ -390,7 +390,18 @@ def task():
     )
 
     WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
-    screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+    
+    fullscreen = False
+
+    if fullscreen:
+        screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+    
+    else:
+
+        screen = pygame.display.set_mode(
+            (info.current_w, info.current_h)
+        )
+        
     pygame.display.set_caption("N-Back")
 
     now = datetime.now()
@@ -787,14 +798,9 @@ def task():
                     clock.tick(60)
                 pygame.quit()
                 sys.exit()
-
-            #if __name__ == "__main__":
-            #   main()
         
     pygame.quit()     
     
-#check resolution size and adjust accordingly
-
 def introduction():
     root = tk.Tk()
     root.title("Instruction Window")

@@ -457,7 +457,6 @@ def task():
     Game_Running = True
 
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-    screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     screen.fill(WHITE)
     pygame.display.set_caption("Welcome to the Task")
     font = pygame.font.Font(None, 60)

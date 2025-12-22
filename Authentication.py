@@ -54,9 +54,7 @@ try:
 
     if response.status_code == 502:
         show_offline_window()
-        
-    else:
-        print("Error:", response.status_code, response.text)
+
 
 except requests.exceptions.ConnectionError as e:
     show_offline_window()

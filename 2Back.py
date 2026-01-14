@@ -830,12 +830,16 @@ def task():
                 pygame.quit()
                 sys.exit()
         
-    pygame.quit()     
+    pygame.quit()
+
+full = None
     
 def introduction():
     root = tk.Tk()
     root.title("Instruction Window")
-    #root.attributes('-fullscreen', True)
+    
+    if full:
+        root.attributes('-fullscreen', True)
 
     frame = tk.Frame(root, bg=root.cget('bg'))
     frame.pack(expand=True, fill="both")

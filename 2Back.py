@@ -889,10 +889,12 @@ def introduction():
         text_widget.insert(tk.END, pages[page_index], "center")
         for word, opts in styles[page_index].items():
             start_index = "1.0"
+            
             while True:
                 pos = text_widget.search(word, start_index, stopindex=tk.END)
                 if not pos:
                     break
+                
                 end_pos = f"{pos}+{len(word)}c"
                 text_widget.tag_add(word, pos, end_pos)
                 text_widget.tag_config(word, **opts)

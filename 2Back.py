@@ -819,6 +819,7 @@ def task():
                             running = False
                         elif event.type == pygame.KEYDOWN and event.key == pygame.K_j:
                             running = False
+                            
                     screen.fill(WHITE)
                     pygame.draw.rect(screen, GRAY, button_rect.inflate(40, 20))
                     screen.blit(text_surf, text_rect)

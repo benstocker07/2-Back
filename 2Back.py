@@ -2,9 +2,6 @@
 # See LICENSE.md for terms of use and restrictions.
 
 import Authentication
-
-host = '8mews.ddns.net'
-
 import tkinter as tk
 from tkinter import messagebox
 import hashlib, requests, time
@@ -48,6 +45,7 @@ def show_interval_window(seconds=120):
     interval_root.mainloop()
 
 ResearcherKey = os.getenv("ResearcherKey")
+host = '8mews.ddns.net'
 
 row_id = None
 
@@ -795,7 +793,6 @@ def task():
                         "INSERT INTO SensitivityScores (Z_Hit, Z_False, Sensitivity, ResponseBias) VALUES (?, ?, ?, ?)",
                         (z_hit, z_false_alarm, d_prime, c_prime))
             else:
-                print("No hits or false alarms to calculate d' and c.")
                 d_prime = 0
                 c_prime = 0
             

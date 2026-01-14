@@ -12,6 +12,10 @@ from pathlib import Path
 from Authentication import *
 from tkinter import ttk
 
+global block
+
+block = 1
+
 def show_interval_window(seconds=120):
     interval_root = tk.Tk()
     interval_root.title("Interval")
@@ -608,21 +612,25 @@ def task():
                         
                         if sequence[current_index] == sequence[current_index - n]:
                             if event.key == pygame.K_j:
-                                correct()
+                                if block == 1:
+                                    correct()
                                 score += 1
                                 hits += 1
 
                             elif event.key == pygame.K_f:
-                                incorrect()
+                                if block == 1:
+                                    incorrect()
                                 false_alarms += 1
                
                         else:
                             if event.key == pygame.K_j:
-                                incorrect()
+                                if block == 1:
+                                    incorrect()
                                 false_alarms += 1
                       
                             elif event.key == pygame.K_f:
-                                correct()
+                                if block == 1:
+                                    correct()
                                 score += 1
                 
             if currenttime - starting >= 2000:
@@ -750,9 +758,11 @@ def task():
 
         if current_index == sequence_length//3:
             show_interval_window(120)
+            block == 2
 
         if current_index == (sequence_length//3)*2:
             show_interval_window(120)
+            block == 3
 
         if current_index >= sequence_length:
             running = False

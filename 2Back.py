@@ -764,6 +764,8 @@ def task():
             show_interval_window(120)
             block == 3
 
+        print(block)
+
         if current_index >= sequence_length:
             running = False
 

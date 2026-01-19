@@ -174,9 +174,6 @@ def installation_and_joystick_check():
                 print(f"Successfully installed {package}")
             except subprocess.CalledProcessError as e:
                 print(f"Failed to install {package}: {e}")
-            except FileNotFoundError as e:
-                    subprocess.check_call(["pip3", "install", package])
-                    print(f"Successfully installed {package}")
                     
     else:
         update_status("All packages already installed.", 80)

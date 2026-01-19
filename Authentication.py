@@ -179,7 +179,6 @@ def installation_and_joystick_check():
                     print(f"Successfully installed {package}")
                     
     else:
-        print("Pygame is already installed.")
         update_status("All packages already installed.", 80)
         time.sleep(1)
 

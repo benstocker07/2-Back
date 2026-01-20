@@ -240,7 +240,8 @@ os.chdir(os.path.dirname(__file__))
 import pandas as pd
 from datetime import datetime
 from scipy.stats import norm
-import csv, sqlite3, numpy as np
+import csv, sqlite3
+import numpy as np
 import json, threading
 from datetime import datetime
 

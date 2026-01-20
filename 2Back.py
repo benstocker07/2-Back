@@ -659,7 +659,7 @@ def task():
                             "score": '0',
                             "task_type": "2-back",
                             "NoResponse": "1",
-                            "user_key": None
+                            "user_key": "N/A"
                         },
                         headers={
                             "X-API-Key": ResearcherKey
@@ -682,7 +682,7 @@ def task():
                             "reaction_time": '0',
                             "task_type": name,
                             "NoResponse": "1",
-                            "user_key": None
+                            "user_key": "N/A"
                         },
                         headers={
                             "X-API-Key": ResearcherKey

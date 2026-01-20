@@ -157,7 +157,7 @@ def installation_and_joystick_check():
     ]
 
     installed_packages = {pkg.key for pkg in pkg_resources.working_set}
-    package_to_find = None
+    package_to_find = 'pandas'
 
     update_status(f"Checking dependencies...", 10)
     time.sleep(1)
@@ -171,7 +171,6 @@ def installation_and_joystick_check():
             update_status(f"Importing {package}...", progress)
             try:
                 subprocess.check_call(["pip", "install", package])
-                print(f"Successfully installed {package}")
             except subprocess.CalledProcessError as e:
                 print(f"Failed to install {package}: {e}")
                     

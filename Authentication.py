@@ -158,7 +158,6 @@ def installation_and_joystick_check():
 
     installed_packages = {pkg.key for pkg in pkg_resources.working_set}
     package_to_find = 'pandas'
-
     update_status(f"Checking dependencies...", 10)
     time.sleep(1)
     

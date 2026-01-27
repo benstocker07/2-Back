@@ -522,7 +522,7 @@ def task():
             print(response.status_code, response.text)
 
     n = 2  
-    sequence_length = 100
+    sequence_length = 120
 
     total_trials = sequence_length + learning
     
@@ -762,11 +762,11 @@ def task():
 
         if current_index == sequence_length//3:
             show_interval_window(120)
-            block == 2
+            block = 2
 
         if current_index == (sequence_length//3)*2:
             show_interval_window(120)
-            block == 3
+            block = 3
 
         print(f'Block: {block}')
 

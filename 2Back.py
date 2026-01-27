@@ -522,7 +522,7 @@ def task():
             print(response.status_code, response.text)
 
     n = 2  
-    sequence_length = 120
+    sequence_length = 100
 
     total_trials = sequence_length + learning
     

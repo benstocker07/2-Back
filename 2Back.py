@@ -563,6 +563,8 @@ def task():
     false_alarms = 0
     stim = True
 
+    block = 1
+
     while running:        
         starterRT = time.time()
 
@@ -755,8 +757,6 @@ def task():
             nbacktrue()
             
         current_index += 1
-
-        block = 1
 
         print(f'Trial No: {current_index}')
 

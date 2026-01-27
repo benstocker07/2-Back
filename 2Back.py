@@ -756,7 +756,7 @@ def task():
             
         current_index += 1
 
-        print('Trial No: {current_index}')
+        print(f'Trial No: {current_index}')
 
         if current_index == sequence_length//3:
             show_interval_window(120)

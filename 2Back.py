@@ -914,7 +914,6 @@ def introduction():
         else:
             root.destroy()
             pygame.display.init()
-            task()
 
     def prev_page():
         nonlocal current_page
@@ -938,4 +937,6 @@ def introduction():
 
 if not Test:
     introduction()
+
+task()
 BAC()

@@ -938,5 +938,4 @@ def introduction():
 
 if not Test:
     introduction()
-task()
 BAC()

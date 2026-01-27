@@ -9,10 +9,6 @@ from pathlib import Path
 from Authentication import *
 from tkinter import ttk
 
-global block
-
-block = 1
-
 def show_interval_window(seconds=120):
     interval_root = tk.Tk()
     interval_root.title("Interval")
@@ -755,6 +751,8 @@ def task():
             nbacktrue()
             
         current_index += 1
+
+        block = 1
 
         print(f'Trial No: {current_index}')
 

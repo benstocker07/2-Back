@@ -1,6 +1,10 @@
 # Copyright Ben Stocker, 2025
 # See LICENSE.md for terms of use and restrictions.
 
+global Test
+
+Test = False
+
 import Authentication
 import tkinter as tk
 from tkinter import messagebox
@@ -534,7 +538,7 @@ def task():
         incorrectanswer = True
         endRT = time.time()
         screen.fill(WHITE)
-        if current_index < learningconv:
+        if current_index < 40:
             screen.blit(incorrectinterval, incorrectintervaldimensions)
         pygame.time.wait(500)
         pygame.display.update()
@@ -545,7 +549,7 @@ def task():
         correctanswer = True
         endRT = time.time()
         screen.fill(WHITE)
-        if current_index < learningconv:
+        if current_index < 40:
             screen.blit(correctinterval, correctintervaldimensions)
         pygame.time.wait(500)
         pygame.display.update()
@@ -932,6 +936,7 @@ def introduction():
     show_page(current_page)
     root.mainloop()
 
-introduction()
+if not Test:
+    introduction()
 task()
 BAC()

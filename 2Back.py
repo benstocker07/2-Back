@@ -760,11 +760,11 @@ def task():
 
         if current_index == sequence_length//3:
             show_interval_window(120)
-            block == 2
+            block += 1
 
         if current_index == (sequence_length//3)*2:
             show_interval_window(120)
-            block == 3
+            block += 1
 
         print(f'Block: {block}')
 

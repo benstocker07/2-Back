@@ -482,8 +482,6 @@ def task():
 
         nbackno = math.ceil(sequence_length / 3)
 
-        print(f'N-Back: {nbackno}')
-
         sequence = [random.randint(1, 9) for _ in range(length)]
         for _ in range(nbackno):
             index = random.randint(n, length - 1)
